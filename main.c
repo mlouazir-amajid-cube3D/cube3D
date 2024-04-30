@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/04/30 16:39:20 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/04/30 17:12:15 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(int ac, char **av)
 {
 	(void)av;
-	if (ac != 2 || map_name(av[1]))
+	if (ac != 2 || map_name_check(av[1]))
 		return (print_error("Invalid Arguments"), 1);
 	return 0;
 }
