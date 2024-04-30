@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 21:44:11 by mlouazir          #+#    #+#             */
-/*   Updated: 2023/11/07 10:28:07 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/11/03 16:11:28 by amajid            #+#    #+#             */
+/*   Updated: 2023/11/04 12:30:16 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])

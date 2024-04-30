@@ -3,60 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 22:31:38 by mlouazir          #+#    #+#             */
-/*   Updated: 2023/12/01 18:37:25 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/07/19 18:46:24 by amajid            #+#    #+#             */
+/*   Updated: 2023/11/04 16:54:32 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-static int	over(char *s, int i, int n)
+int	ft_atoi(const char *str)
 {
-	unsigned long	r;
-	int				digits;
+	int				i;
+	char			neg;
+	long long int	result;
 
-	digits = 0;
-	r = 0;
-	while ('0' <= s[i] && s[i] <= '9')
-	{
-		if (digits >= 19 && n == 1)
-			return (-1);
-		if (digits >= 19 && n == -1)
-			return (0);
-		r = (r * 10) + (s[i] - 48);
-		i++;
-		digits++;
-	}
-	return (r * n);
-}
-
-int	ft_atoi(const char *s)
-{
-	int					n;
-	int					i;
-
-	n = 1;
 	i = 0;
-	while (((9 <= s[i] && s[i] <= 13) || s[i] == 32) && s[i])
+	neg = 1;
+	result = 0;
+	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 		i++;
-	if (s[i] == '-')
+	if (str[i] == '-')
+		neg *= -1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
+		result *= 10;
+		result += str[i] - '0';
 		i++;
-		n = -1;
 	}
-	else if (s[i] == '+')
-		i++;
-	while (s[i] == '0')
-		i++;
-	return (over((char *)s, i, n));
+	result *= neg;
+	return ((int)result);
 }
-// #include "stdio.h"
-// int main(int argc, char const *argv[])
-// {
-// 	char s[] = "-184467440737095551616";
-// 	printf("%d\n", ft_atoi(s));
-// 	printf("%d\n", atoi(s));
-// 	return 0;
-// }

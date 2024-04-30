@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 20:59:42 by amajid            #+#    #+#             */
-/*   Updated: 2023/11/04 12:28:49 by amajid           ###   ########.fr       */
+/*   Created: 2023/11/06 19:13:33 by amajid            #+#    #+#             */
+/*   Updated: 2023/11/07 14:56:34 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	long	i;
+	t_list	*current;
+	t_list	*last;
 
-	i = ft_strlen(s);
-	if (s[i] == (char)c)
-		return ((char *)s + i);
-	i--;
-	while (i >= 0)
+	if (!lst || !(*lst) || !del)
+		return ;
+	current = (*lst);
+	while (current->next)
 	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i--;
+		if (current->content)
+			del(current->content);
+		last = current;
+		current = current->next;
+		free(last);
 	}
-	return (NULL);
+	if (current->content)
+		del(current->content);
+	last = current;
+	current = current->next;
+	free(last);
+	(*lst) = NULL;
+	return ;
 }

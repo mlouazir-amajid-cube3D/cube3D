@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/04/30 17:14:34 by amajid           ###   ########.fr       */
+/*   Updated: 2024/04/30 18:07:38 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <mlx.h>
-#include "../libft/libft.h"
+# include "./libft/libft.h"
 
 void	print_error(char *mssg);
-int		map_name(char *filename);
-int map_name_check(char *filename);
+int		map_name_check(char *filename);
 
 #endif

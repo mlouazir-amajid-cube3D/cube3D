@@ -3,35 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 21:03:24 by mlouazir          #+#    #+#             */
-/*   Updated: 2023/11/12 07:17:02 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/11/01 17:34:32 by amajid            #+#    #+#             */
+/*   Updated: 2023/11/03 19:10:55 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+static void	work(long i, char *char_dst, char *char_src, size_t len)
 {
-	char	*d;
-	char	*s;
-	int		l;
-
-	d = (char *)dst;
-	s = (char *)src;
-	l = len;
-	if (!dst && !src)
-		return (NULL);
-	if (d > s)
+	if (char_dst > char_src)
 	{
-		while (l > 0)
+		i = len - 1;
+		while (i >= 0)
 		{
-			d[l - 1] = s[l - 1];
-			l--;
+			char_dst[i] = char_src[i];
+			i--;
 		}
 	}
 	else
-		ft_memcpy(dst, src, len);
+	{
+		i = 0;
+		while ((size_t)i < len)
+		{
+			char_dst[i] = char_src[i];
+			i++;
+		}
+	}
+}
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	long	i;
+	char	*char_dst;
+	char	*char_src;
+
+	if ((dst == NULL && src == NULL) || len == 0)
+		return (dst);
+	char_dst = (char *)dst;
+	char_src = (char *)src;
+	i = 0;
+	work(i, char_dst, char_src, len);
 	return (dst);
 }

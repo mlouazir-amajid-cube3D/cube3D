@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 16:48:28 by mlouazir          #+#    #+#             */
-/*   Updated: 2023/11/09 12:50:27 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/10/31 15:36:45 by amajid            #+#    #+#             */
+/*   Updated: 2023/11/03 18:14:46 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stddef.h>
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -19,8 +19,7 @@ void	ft_bzero(void *s, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		*(char *)s = 0;
-		s++;
+		((char *)s)[i] = 0;
 		i++;
 	}
 }

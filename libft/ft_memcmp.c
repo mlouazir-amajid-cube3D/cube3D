@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 22:20:10 by mlouazir          #+#    #+#             */
-/*   Updated: 2023/11/12 16:55:19 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/07/17 10:50:56 by amajid            #+#    #+#             */
+/*   Updated: 2023/11/04 13:48:43 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	size_t	i;
+	size_t			i;
+	unsigned char	*s1_uc;
+	unsigned char	*s2_uc;
 
+	if (n == 0)
+		return (0);
 	i = 0;
-	while (i < n)
-	{
-		if (*(unsigned char *)s1 != *(unsigned char *)s2)
-			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+	s1_uc = (unsigned char *)s1;
+	s2_uc = (unsigned char *)s2;
+	while (i < n && s1_uc[i] == s2_uc[i])
 		i++;
-		s1++;
-		s2++;
-	}
-	return (0);
+	if (i == n && i != 0)
+		i--;
+	return (s1_uc[i] - s2_uc[i]);
 }

@@ -3,63 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 14:22:08 by mlouazir          #+#    #+#             */
-/*   Updated: 2023/11/09 18:37:47 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/11/05 18:38:53 by amajid            #+#    #+#             */
+/*   Updated: 2023/11/06 15:08:49 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-static	void	ft_stockn(char *str, int n, int *p)
+static char	*work(char *re_holder, int i)
 {
-	long	ln;
+	int		index;
+	char	*result;
 
-	ln = n;
-	if (ln < 0)
+	result = malloc(i + 1);
+	if (!result)
+		return (NULL);
+	result[0] = re_holder[0];
+	index = (re_holder[0] == '-');
+	i--;
+	while (re_holder[index])
 	{
-		ln = -ln;
-		ft_memset((str + *p), '-', 1);
-		*p += 1;
+		result[index] = re_holder[i];
+		index++;
+		i--;
 	}
-	if (ln > 9)
-	{
-		ft_stockn(str, ln / 10, p);
-		ft_stockn(str, ln % 10, p);
-	}
-	else
-	{
-		ft_memset((str + *p), (ln + '0'), 1);
-		*p += 1;
-	}
+	result[index] = 0;
+	return (result);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	long	ln;
-	int		s;
-	int		p;
+	char	re_holder[32];
+	long	holder;
+	int		i;
+	char	*result;
 
-	ln = n;
-	p = 0;
-	s = 0;
-	if (ln < 0)
+	if (n == 0)
 	{
-		ln = -ln;
-		s++;
+		result = ft_calloc(2, 1);
+		if (!result)
+			return (NULL);
+		result[0] = '0';
+		return (result);
 	}
-	while (ln >= 10)
+	i = 0;
+	holder = n;
+	holder *= (n < 0) * -1 + !(n < 0);
+	while (holder)
 	{
-		ln /= 10;
-		s++;
+		re_holder[i++] = (holder % 10) + '0';
+		holder /= 10;
 	}
-	s++;
-	str = malloc(s + 1);
-	if (str == NULL)
-		return (NULL);
-	ft_stockn(str, n, &p);
-	str[s] = '\0';
-	return (str);
+	re_holder[i] = (n < 0) * '-';
+	i += (n < 0);
+	re_holder[i] = 0;
+	return (work(re_holder, i));
 }

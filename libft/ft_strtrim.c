@@ -3,31 +3,90 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 11:45:06 by mlouazir          #+#    #+#             */
-/*   Updated: 2023/11/08 20:51:23 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/11/05 16:09:51 by amajid            #+#    #+#             */
+/*   Updated: 2023/11/05 18:28:55 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-char	*ft_strtrim(char const *s, char const *set)
+static size_t	b_count(char const *s1, char const *set)
 {
-	char	*str;
-	int		i;
-	int		l;
+	size_t	i;
+	size_t	j;
+	char	is_found;
 
 	i = 0;
-	if (!s || !set)
-		return (NULL);
-	l = ft_strlen(s);
-	while (ft_strchr((char *)set, s[i]) && l != 0)
+	while (s1[i])
+	{
+		j = 0;
+		is_found = 0;
+		while (set[j])
+		{
+			if (s1[i] == set[j])
+			{
+				is_found = 1;
+				break ;
+			}
+			j++;
+		}
+		if (!is_found)
+			break ;
 		i++;
-	while ((l - 1) > 0 && ft_strchr((char *)set, s[l - 1]))
-		l--;
-	str = ft_substr(s, i, (l - i));
-	if (str == NULL)
+	}
+	return (i);
+}
+
+static size_t	a_count(char const *s1, char const *set)
+{
+	long	i;
+	size_t	j;
+	char	is_found;
+	size_t	s1_len;
+
+	s1_len = ft_strlen(s1);
+	i = s1_len - 1;
+	while (i > -1)
+	{
+		j = 0;
+		is_found = 0;
+		while (set[j])
+		{
+			if (s1[i] == set[j])
+			{
+				is_found = 1;
+				break ;
+			}
+			j++;
+		}
+		if (!is_found)
+			break ;
+		i--;
+	}
+	return (s1_len - i - 1);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	char	*result;
+	size_t	s1_len;
+	size_t	b_len;
+	size_t	a_len;
+
+	if (!s1 || !set)
 		return (NULL);
-	return (str);
+	s1_len = ft_strlen(s1);
+	b_len = b_count(s1, set);
+	a_len = 0;
+	if (b_len != s1_len)
+		a_len = a_count(s1, set);
+	result = malloc((s1_len - a_len) - b_len + 1);
+	if (!result)
+		return (NULL);
+	ft_strlcpy(result, s1 + b_len, (s1_len - b_len) - a_len + 1);
+	result[(s1_len - b_len) - a_len] = 0;
+	return (result);
 }

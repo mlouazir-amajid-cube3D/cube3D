@@ -3,40 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 15:35:42 by mlouazir          #+#    #+#             */
-/*   Updated: 2023/11/09 08:57:43 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/11/04 18:58:09 by amajid            #+#    #+#             */
+/*   Updated: 2023/11/07 15:19:21 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+
+static char	*return_empty_str(void)
+{
+	char	*result;
+
+	result = malloc(1);
+	if (!result)
+		return (NULL);
+	result[0] = 0;
+	return (result);
+}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*sub;
 	size_t	i;
+	size_t	s_len;
+	char	*result;
 
 	i = 0;
-	if (s == NULL)
+	if (len <= 0)
+		return (return_empty_str());
+	if (!s)
 		return (NULL);
-	if (start >= (unsigned int)ft_strlen(s))
-	{
-		sub = ft_calloc(1, 1);
-		if (sub == NULL)
-			return (NULL);
-		return (sub);
-	}
-	if (start + len > (unsigned int)ft_strlen(s))
-		len = (unsigned int)ft_strlen(s) - start;
-	sub = malloc(len + 1);
-	if (sub == NULL)
+	if (start < 0)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (s_len <= (start))
+		return (return_empty_str());
+	result = malloc((len < (s_len - start)) * (len + 1)
+			+ (s_len - start + 1) * !(len < (s_len - start)));
+	if (!result)
 		return (NULL);
 	while (s[start + i] && i < len)
 	{
-		sub[i] = s[start + i];
+		result[i] = s[start + i];
 		i++;
 	}
-	sub[i] = '\0';
-	return (sub);
+	result[i] = 0;
+	return (result);
 }
