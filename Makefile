@@ -1,16 +1,15 @@
-SRC = 
-OBJ = $(SRC:.cpp=.o)
-FLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = robots
-CPP = c++
+SRC = main.c ./utils/tools.c ./parcing/parcing_1.c ./utils/libft.c
+OBJ = $(SRC:.c=.o)
+FLAGS = cc -Wall -Wextra -Werror
+NAME = cub3D
 
 all: $(NAME)
 
-%.o: %.cpp  
-	$(CPP) $(FLAGS) -c $<
-
 $(NAME): $(OBJ)
-	$(CPP) $(FLAGS) -o $@ $(OBJ)
+	$(FLAGS) -o $@ $(OBJ)
+
+%.o: %.c cub.h
+	$(FLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ)
@@ -19,3 +18,5 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY: clean
