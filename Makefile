@@ -1,4 +1,4 @@
-SRC = ClapTrap.cpp  main.cpp  ScavTrap.cpp  FragTrap.cpp
+SRC = 
 OBJ = $(SRC:.cpp=.o)
 FLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = robots
@@ -6,7 +6,7 @@ CPP = c++
 
 all: $(NAME)
 
-%.o: %.cpp  ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
+%.o: %.cpp  
 	$(CPP) $(FLAGS) -c $<
 
 $(NAME): $(OBJ)
