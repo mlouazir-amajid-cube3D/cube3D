@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing_1.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 16:16:55 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/04/30 16:48:46 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/11/06 21:03:24 by mlouazir          #+#    #+#             */
+/*   Updated: 2023/11/12 07:17:02 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "libft.h"
 
-int	map_name(char *filename)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	l;
+	char	*d;
+	char	*s;
+	int		l;
 
-	l = ft_strlen(filename) - 1;
-	if (filename[l] != 'b' || (l - 1 >= 0 && filename[l - 1] != 'u') \
-	|| (l - 2 >= 0 && filename[l - 2] != 'c') || (l - 3 >= 0 && filename[l - 3] != '.'))
-		return (print_error("Invalid Map Name"), exit(1), 1);
-	return (0);
+	d = (char *)dst;
+	s = (char *)src;
+	l = len;
+	if (!dst && !src)
+		return (NULL);
+	if (d > s)
+	{
+		while (l > 0)
+		{
+			d[l - 1] = s[l - 1];
+			l--;
+		}
+	}
+	else
+		ft_memcpy(dst, src, len);
+	return (dst);
 }

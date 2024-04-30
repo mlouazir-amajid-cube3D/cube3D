@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing_1.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 16:16:55 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/04/30 16:48:46 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/11/06 21:08:52 by mlouazir          #+#    #+#             */
+/*   Updated: 2023/11/07 10:36:44 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "libft.h"
 
-int	map_name(char *filename)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	l;
+	size_t		i;
+	size_t		j;
+	size_t		ls;
 
-	l = ft_strlen(filename) - 1;
-	if (filename[l] != 'b' || (l - 1 >= 0 && filename[l - 1] != 'u') \
-	|| (l - 2 >= 0 && filename[l - 2] != 'c') || (l - 3 >= 0 && filename[l - 3] != '.'))
-		return (print_error("Invalid Map Name"), exit(1), 1);
-	return (0);
+	i = 0;
+	j = 0;
+	ls = ft_strlen((char *)src);
+	if (dstsize == 0)
+		return (ls);
+	while (src[i] && i < (dstsize - 1))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (ls);
 }

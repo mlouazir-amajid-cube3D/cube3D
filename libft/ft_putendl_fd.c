@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing_1.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 16:16:55 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/04/30 16:48:46 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/11/07 14:53:34 by mlouazir          #+#    #+#             */
+/*   Updated: 2023/11/13 07:07:48 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "libft.h"
 
-int	map_name(char *filename)
+void	ft_putendl_fd(char *s, int fd)
 {
-	int	l;
+	int	i;
 
-	l = ft_strlen(filename) - 1;
-	if (filename[l] != 'b' || (l - 1 >= 0 && filename[l - 1] != 'u') \
-	|| (l - 2 >= 0 && filename[l - 2] != 'c') || (l - 3 >= 0 && filename[l - 3] != '.'))
-		return (print_error("Invalid Map Name"), exit(1), 1);
-	return (0);
+	i = 0;
+	if (!s || fd < 0)
+		return ;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	write(fd, "\n", 1);
 }

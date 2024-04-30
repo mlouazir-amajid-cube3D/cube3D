@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing_1.c                                        :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 16:16:55 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/04/30 16:48:46 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/11/06 22:20:10 by mlouazir          #+#    #+#             */
+/*   Updated: 2023/11/12 16:55:19 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub.h"
+#include "libft.h"
 
-int	map_name(char *filename)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	l;
+	size_t	i;
 
-	l = ft_strlen(filename) - 1;
-	if (filename[l] != 'b' || (l - 1 >= 0 && filename[l - 1] != 'u') \
-	|| (l - 2 >= 0 && filename[l - 2] != 'c') || (l - 3 >= 0 && filename[l - 3] != '.'))
-		return (print_error("Invalid Map Name"), exit(1), 1);
+	i = 0;
+	while (i < n)
+	{
+		if (*(unsigned char *)s1 != *(unsigned char *)s2)
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+		i++;
+		s1++;
+		s2++;
+	}
 	return (0);
 }

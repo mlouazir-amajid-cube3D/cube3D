@@ -1,4 +1,4 @@
-SRC = main.c ./utils/tools.c ./parcing/parcing_1.c ./utils/libft.c
+SRC = main.c ./utils/tools.c ./parcing/parcing_1.c
 OBJ = $(SRC:.c=.o)
 FLAGS = cc -Wall -Wextra -Werror
 NAME = cub3D
