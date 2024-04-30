@@ -6,7 +6,7 @@
 /*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:16:55 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/04/30 17:13:58 by amajid           ###   ########.fr       */
+/*   Updated: 2024/04/30 17:24:08 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ int map_name_check(char *filename)
 	const long size = ft_strlen(filename);
 	const int ex_size = ft_strlen(".cub");
 	if(size <= ex_size)
-		return 0;
+		return 1;
 	if(ft_strncmp(filename + size - ex_size, ".cub", ex_size) != 0)
 	{
-		return 0;	
+		return 1;	
 	}
+	return 0;
 }
 
 int	map_name(char *filename)
