@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   parcing_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 16:11:28 by amajid            #+#    #+#             */
-/*   Updated: 2023/11/04 12:30:16 by amajid           ###   ########.fr       */
+/*   Created: 2024/04/30 20:57:11 by mlouazir          #+#    #+#             */
+/*   Updated: 2024/04/30 21:37:18 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub.h"
 
-char	*ft_strchr(const char *s, int c)
+void	save_map(t_map *info)
 {
-	size_t	i;
+	char	*buf ;
 
-	i = 0;
-	while (s[i])
+	buf = get_next_line(info->fd);
+	while (buf)
 	{
-		if (s[i] == (char)c)
-			return ((char *)s + i);
-		i++;
+		printf("%s", buf);
+		buf = get_next_line(info->fd);
 	}
-	if (s[i] == (char)c)
-		return ((char *)s + i);
-	return (NULL);
+	
 }

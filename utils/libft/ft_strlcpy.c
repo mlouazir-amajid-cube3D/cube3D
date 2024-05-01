@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/04/30 21:15:08 by mlouazir         ###   ########.fr       */
+/*   Created: 2023/11/01 19:10:17 by amajid            #+#    #+#             */
+/*   Updated: 2024/04/30 21:33:50 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_3D
-#define CUB_3D
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <mlx.h>
-# include <fcntl.h>
-# include "./utils/libft/libft.h"
-
-typedef struct s_map
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	char	**map;
-	char	*filename;
-	int		fd;
-} t_map;
+	size_t	i;
 
-void	print_error(char *mssg);
-int		map_name_check(char *filename);
-char	*get_next_line(int fd);
-void	save_map(t_map *info);
-
-#endif
+	if (!dstsize)
+	{
+		if (src)
+			return (ft_strlen(src));
+		else
+			return (0);
+	}
+	i = 0;
+	while (src[i] && i < (dstsize - 1))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = 0;
+	return (ft_strlen(src));
+}
