@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:36:21 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/04/30 21:35:33 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/01 18:08:13 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ char	*ft_set_holder(char *holder)
 	int		j;
 
 	i = 0;
-	j = 0;
+	j = 0;	
 	hl = ft_strlen(holder);
 	while (holder[i] && holder[i] != '\n')
 		i++;
-	if (holder[i] == '\n')
-		i++;
+	// if (holder[i] == '\n')
+	// 	i++;
 	l = hl - i;
 	newholder = (char *)malloc(l + 1);
 	if (!newholder)
@@ -51,8 +51,8 @@ char	*ft_set_line(char *holder)
 	j = 0;
 	while (holder[i] && holder[i] != '\n')
 		i++;
-	if (holder[i] == '\n')
-		i++;
+	// if (holder[i] == '\n')
+	// 	i++;
 	res = (char *)malloc(i + 1);
 	if (!res)
 	{
@@ -70,14 +70,14 @@ char	*ft_set_line(char *holder)
 
 char	*ft_read(char *holder, int fd)
 {
-	char	reader[50 + 1];
+	char	reader[2];
 	int		counter;
 
 	holder = malloc(1);
 	holder[0] = 0;
 	while (!ft_strchr(holder, '\n'))
 	{
-		counter = read(fd, reader, 50);
+		counter = read(fd, reader, 1);
 		if (counter <= 0)
 			break ;
 		reader[counter] = '\0';

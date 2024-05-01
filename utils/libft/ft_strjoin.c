@@ -6,14 +6,14 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 15:36:08 by amajid            #+#    #+#             */
-/*   Updated: 2024/04/30 21:34:12 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/01 14:45:14 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	s1_len;
 	size_t	s2_len;
@@ -29,5 +29,5 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memset(result, 0, s1_len + s2_len + 1);
 	ft_strlcpy(result, s1, s1_len + 1);
 	ft_strlcat(result, s2, s1_len + s2_len + 1);
-	return (result);
+	return (free(s1), result);
 }

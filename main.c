@@ -6,11 +6,16 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/04/30 21:35:53 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/01 20:08:45 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void ll () 
+{
+	system("leaks cub3D");
+}
 
 int main(int ac, char **av)
 {
@@ -21,10 +26,24 @@ int main(int ac, char **av)
 	info = malloc(sizeof(t_map));
 	if (!info)
 		return (print_error("Undefiened Error"), 1);
+	info->no = NULL;
+	info->so = NULL;
+	info->we = NULL;
+	info->ea = NULL;
+	info->c = NULL;
+	info->f = NULL;
 	info->filename = av[1];
 	info->fd = open(info->filename, O_RDONLY);
 	if (info->fd == -1)
 		return (print_error("Error in file descriptor"), 1);
 	save_map(info);
+	printf("%s\n", info->c);
+	printf("%s\n", info->f);
+	printf("%s\n", info->ea);
+	printf("%s\n", info->we);
+	printf("%s\n", info->so);
+	printf("%s\n", info->no);
+	free(info);
+	close(info->fd);
 	return 0;
 }
