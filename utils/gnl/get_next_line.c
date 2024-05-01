@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:36:21 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/01 18:08:13 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/01 22:38:55 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ char	*ft_set_holder(char *holder)
 	hl = ft_strlen(holder);
 	while (holder[i] && holder[i] != '\n')
 		i++;
-	// if (holder[i] == '\n')
-	// 	i++;
 	l = hl - i;
 	newholder = (char *)malloc(l + 1);
 	if (!newholder)
@@ -51,8 +49,6 @@ char	*ft_set_line(char *holder)
 	j = 0;
 	while (holder[i] && holder[i] != '\n')
 		i++;
-	// if (holder[i] == '\n')
-	// 	i++;
 	res = (char *)malloc(i + 1);
 	if (!res)
 	{
@@ -73,8 +69,6 @@ char	*ft_read(char *holder, int fd)
 	char	reader[2];
 	int		counter;
 
-	holder = malloc(1);
-	holder[0] = 0;
 	while (!ft_strchr(holder, '\n'))
 	{
 		counter = read(fd, reader, 1);
@@ -99,6 +93,7 @@ char	*get_next_line(int fd)
 	static char	*holder;
 	char		*res;
 
+	holder = NULL;
 	if (fd < 0 || read(fd, 0, 0) == -1)
 	{
 		if (holder)
@@ -117,5 +112,6 @@ char	*get_next_line(int fd)
 	holder = ft_set_holder(holder);
 	if (!holder)
 		return (NULL);
+	free(holder);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 20:57:11 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/01 21:39:54 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/01 22:39:12 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	verify_line(t_map *info, char *line)
 		print_error("Invalid Element");
 		exit(1);
 	}
+	free(line);
 }
 
 int		is_map_content(char *buf)
@@ -108,6 +109,8 @@ void	save_map(t_map *info)
 		buf = get_next_line(info->fd);
 		i++;
 	}
+	printf("i = %d\n", i);
+	free(buf);
 	if (!(info->c) || !(info->f) \
 	|| !(info->no) || !(info->ea) \
 	|| !(info->so) || !(info->we))

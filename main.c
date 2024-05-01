@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/01 20:08:45 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/01 22:38:25 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void ll ()
 
 int main(int ac, char **av)
 {
+	atexit(ll);
 	t_map	*info;
 
 	if (ac != 2 || map_name_check(av[1]))
@@ -43,7 +44,13 @@ int main(int ac, char **av)
 	printf("%s\n", info->we);
 	printf("%s\n", info->so);
 	printf("%s\n", info->no);
-	free(info);
+	free(info->c);
+	free(info->f);
+	free(info->so);
+	free(info->we);
+	free(info->ea);
+	free(info->no);
 	close(info->fd);
+	free(info);
 	return 0;
 }
