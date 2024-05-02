@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/02 11:52:37 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/02 18:22:05 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ void	print_error(char *mssg);
 int		map_name_check(char *filename);
 char	*get_next_line(int fd);
 t_map	*save_map(t_info *info);
+void	verify_line(t_info *info, char *line);
 void	clear_all(t_map *m, t_info *in, char *mssg, int status);
 void	clear_array(char **array, int size);
+void	generate_colors(int *dest, char *src);
+void	map_content_check(t_map *map, t_info *info, char *line);
 #endif

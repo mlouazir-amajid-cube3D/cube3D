@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/02 11:26:28 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/02 16:17:21 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int main(int ac, char **av)
 	if (info->fd == -1)
 		return (print_error("Error in file descriptor"), 1);
 	map = save_map(info);
-	// printf("%s\n", info->c);
-	// printf("%s\n", info->f);
+	// printf("map->c_col = %d\n", map->c_col);
+	// printf("map->f_col = %d\n", map->f_col);
 	// printf("%s\n", info->ea);
 	// printf("%s\n", info->we);
 	// printf("%s\n", info->so);

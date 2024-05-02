@@ -13,8 +13,14 @@ and that all element before are stored.
 
 if not then we still look for an element, 
 to do so, we verify the start of the the line strimed from spaces,
-with the charcters want to add + the next character should be a sapce,
+with the charcters want to add + the next character should be a sapce or tab,
 if that line does not start with an element, then it is an error,
 if the pointer that holds that element already exists, then it is an error.
 
-In the process of extracting the contant we check if there's a tab, if so, it is an error.
+After finding all our elements, we check the ceiling's and the floor's color.
+We do that by:
+1-verifying that there's 3 commas, with 3 string generated from the split.
+2-The Strings content cointains only the digits, with 3 characters max.
+3-If ft_atoi(res), is smaller than 0 or bigger than 255.
+4-Then we apply the rule of : r << 16 | g << 8 | b (we used '|' instead of '&' to keep the elements that we shifted knowing that each element is 1 byte, and int is 4 bytes)
+And we get the color that we wanted
