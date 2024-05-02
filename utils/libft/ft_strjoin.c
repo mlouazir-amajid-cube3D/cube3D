@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 15:36:08 by amajid            #+#    #+#             */
-/*   Updated: 2024/05/01 22:36:59 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/02 09:15:58 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		i++;
 	}
 	while (s2 && j < s2_len)
-	{
 		result[i++] = s2[j++];
-		// i++;
-		// j++;
-	}
 	return (free(s1), result);
 }

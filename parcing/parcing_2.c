@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 20:57:11 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/01 22:39:12 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/02 12:01:44 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_element(char *line, char *elem, int size)
 	return (1);
 }
 
-void	verify_line(t_map *info, char *line)
+void	verify_line(t_info *info, char *line)
 {
 	line = ft_strtrim(line, " \t");
 	if (!check_element(line, "NO", 2) \
@@ -64,10 +64,7 @@ void	verify_line(t_map *info, char *line)
 	&& !is_already_registered(info->c))
 		info->c = give_elements(line);
 	else
-	{
-		print_error("Invalid Element");
-		exit(1);
-	}
+		clear_all(NULL, NULL, "Invalid Element", 1);
 	free(line);
 }
 
@@ -92,12 +89,47 @@ int		is_map_content(char *buf)
 	return (0);
 }
 
-void	save_map(t_map *info)
+void	generate_colors(t_map *map, t_info *info)
 {
+	char	**tmp;
+	int		i;
+	int		red;
+	int		green;
+	int		blue;
+
+	red = 0;
+	green = 0;
+	blue = 0;
+	i = -1;
+	tmp = ft_split(info->c, ',');
+	while (tmp[++i])
+		;
+	if (i != 3)
+	{
+		clear_array(tmp, -1);
+		clear_all(NULL, NULL, "Invalid Color", 1);
+	}
+	red = ft_atoi(tmp[0]);
+	green = ft_atoi(tmp[1]);
+	blue = ft_atoi(tmp[2]);
+	map->c_col = (red << 16) | (green << 8) | (blue);
+	printf("map->c_col = %d\n", map->c_col);
+}
+
+t_map	*save_map(t_info *info)
+{
+	t_map	*map;
 	char	*buf;
 	int		i;
 
 	i = 0;
+	map = malloc(sizeof(t_map));
+	if (!map)
+		return (NULL);
+	clear_all(map, NULL, NULL, 2);
+	map->map_content = NULL;
+	map->c_col = 0;
+	map->f_col = 0;
 	buf = get_next_line(info->fd);
 	while (buf)
 	{
@@ -109,13 +141,11 @@ void	save_map(t_map *info)
 		buf = get_next_line(info->fd);
 		i++;
 	}
-	printf("i = %d\n", i);
 	free(buf);
 	if (!(info->c) || !(info->f) \
 	|| !(info->no) || !(info->ea) \
 	|| !(info->so) || !(info->we))
-	{
-		print_error("Invalid Map");
-		exit(1);
-	}
+		clear_all(NULL, NULL, "Invalid Map", 1);
+	generate_colors(map, info);
+	return (map);
 }

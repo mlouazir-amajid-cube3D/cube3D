@@ -1,4 +1,7 @@
 
 Todo:
   ✔ Duplicated Element @done(24-05-01 16:30)
-  ☐ Knowing tabs logic
+  ✔ Knowing tabs logic @done(24-05-02 12:01)
+  ☐ The Logic behind color extraction
+  ☐ Check Colors parcing (all chars - '-' - 0 <= && <= 255)
+  ☐ Good way of doing it with both colors

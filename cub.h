@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/01 15:29:02 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:52:37 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include "./utils/libft/libft.h"
 
-typedef struct s_map
+typedef struct s_info
 {
 	char	**map;
 	char	*filename;
@@ -31,11 +31,23 @@ typedef struct s_map
 	char	*f;
 	char	*c;
 	int		fd;
+} t_info;
+
+typedef struct s_map
+{
+	char	**map_content;
+	void	*no_tex;
+	void	*so_tex;
+	void	*we_tex;
+	void	*ea_tex;
+	int		f_col;
+	int		c_col;
 } t_map;
 
 void	print_error(char *mssg);
 int		map_name_check(char *filename);
 char	*get_next_line(int fd);
-void	save_map(t_map *info);
-
+t_map	*save_map(t_info *info);
+void	clear_all(t_map *m, t_info *in, char *mssg, int status);
+void	clear_array(char **array, int size);
 #endif
