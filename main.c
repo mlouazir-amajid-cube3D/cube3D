@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 16:28:21 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:44:50 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void ll ()
 
 int	main(int ac, char **av)
 {
-	// atexit(ll);
+	atexit(ll);
 	t_info	*info;
 	t_map	*map;
 
 	if (ac != 2 || map_name_check(av[1]))
-		return (print_error("Invalid Arguments"), 1);
+		return (print_error("Invalid file name"), 1);
 	info = malloc(sizeof(t_info));
 	if (!info)
 		return (print_error("Undefiened Error"), 1);

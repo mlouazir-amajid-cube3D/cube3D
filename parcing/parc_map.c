@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 20:57:11 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 16:14:07 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:41:33 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	map_init(t_map **map)
 	(!(*map)) && (clear_all(NULL, NULL, "Fail in malloc", 1), 0);
 	clear_all((*map), NULL, NULL, 2);
 	(*map)->content = NULL;
+	(*map)->init = NULL;
 	(*map)->no_tex = NULL;
 	(*map)->so_tex = NULL;
 	(*map)->we_tex = NULL;
