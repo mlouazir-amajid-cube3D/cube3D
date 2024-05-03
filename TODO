@@ -6,3 +6,5 @@ Todo:
   ✔ Check Colors parcing (all chars - '-' - 0 <= && <= 255) @done(24-05-02 15:19)
   ✔ Good way of doing it with both colors @done(24-05-02 15:19)
   ☐ The Logic Behind = ( WE 11111 00 )
+  ☐ The fast re-test problem
+  ☐ 

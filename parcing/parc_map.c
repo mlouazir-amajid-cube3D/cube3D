@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 20:57:11 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/02 18:40:05 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 11:32:39 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*elements_check(t_map *map, t_info *info)
 	char	*buf;
 	
 	buf = get_next_line(info->fd);
-	(!buf) && (clear_all(NULL, NULL, "faille in malloc", 1), 0);
+	(!buf) && (clear_all(NULL, NULL, "Empty file", 1), 0);
 	while (buf)
 	{
 		if (buf[0] && !is_map_content(buf))
@@ -63,7 +63,7 @@ void	map_init(t_map **map)
 	(*map) = malloc(sizeof(t_map));
 	(!(*map)) && (clear_all(NULL, NULL, "faille in malloc", 1), 0);
 	clear_all((*map), NULL, NULL, 2);
-	(*map)->map_content = NULL;
+	(*map)->content = NULL;
 	(*map)->no_tex = NULL;
 	(*map)->so_tex = NULL;
 	(*map)->we_tex = NULL;

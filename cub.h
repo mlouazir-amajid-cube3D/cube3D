@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/02 18:22:05 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 11:32:23 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_info
 
 typedef struct s_map
 {
-	char	**map_content;
+	char	**content;
 	void	*no_tex;
 	void	*so_tex;
 	void	*we_tex;
@@ -53,4 +53,5 @@ void	clear_all(t_map *m, t_info *in, char *mssg, int status);
 void	clear_array(char **array, int size);
 void	generate_colors(int *dest, char *src);
 void	map_content_check(t_map *map, t_info *info, char *line);
+int		array_size(char **array);
 #endif

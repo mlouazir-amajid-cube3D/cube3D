@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:17:43 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/02 11:29:37 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 11:31:05 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,15 @@ void	print_error(char *mssg)
 	while (mssg[++i])
 		write(2, &mssg[i], 1);
 	write(2, "\n", 1);
+}
+
+int	array_size(char **array)
+{
+	int i;
+
+	i = -1;
+	if (!array)
+		return (0);
+	while (array[++i]);
+	return (i);
 }
