@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:36:21 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/01 22:38:55 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:28:37 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_set_holder(char *holder)
 	int		j;
 
 	i = 0;
-	j = 0;	
+	j = 0;
 	hl = ft_strlen(holder);
 	while (holder[i] && holder[i] != '\n')
 		i++;
@@ -78,7 +78,7 @@ char	*ft_read(char *holder, int fd)
 		holder = ft_strjoin(holder, reader);
 	}
 	if (holder == NULL)
-		return (NULL); 
+		return (NULL);
 	if (read(fd, NULL, 0) == -1 || holder[0] == '\0')
 	{
 		free(holder);

@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:25:31 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/02 16:37:58 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:26:59 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	generate_colors(int *dest, char *src)
 	blue = 0;
 	tmp = ft_split(src, ',');
 	(!tmp) && (clear_all(NULL, NULL, "faille in malloc", 1), 0);
-	while (tmp[++i]);
+	while (tmp[++i])
+		;
 	((commas_count(src) != 2 || i != 3) || is_alldigit(tmp)) \
 	&& (clear_array(tmp, -1), \
 	clear_all(NULL, NULL, "Invalid Color", 1), 0);

@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:38:14 by amajid            #+#    #+#             */
-/*   Updated: 2024/05/01 17:59:04 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:28:23 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ typedef struct s_list
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+typedef struct double_size
+{
+	size_t	i;
+	size_t	count;
+}	t_double_size;
 
 int		ft_strcmp(char *s1, char *s2);
 int		ft_isalpha(int c);

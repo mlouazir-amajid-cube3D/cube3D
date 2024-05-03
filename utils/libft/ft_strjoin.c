@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 15:36:08 by amajid            #+#    #+#             */
-/*   Updated: 2024/05/02 09:15:58 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 14:27:41 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	s1_len;
 	size_t	s2_len;
 	char	*result;
-	size_t		i;
-	size_t		j;
+	size_t	i;
+	size_t	j;
 
 	i = 0;
 	j = 0;

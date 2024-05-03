@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:17:43 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 11:31:05 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:27:46 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	clear_array(char **array, int size)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (size == -1)
@@ -30,9 +30,9 @@ void	clear_array(char **array, int size)
 
 void	clear_all(t_map *m, t_info *in, char *mssg, int status)
 {
-	static t_map *map;
-	static t_info *info;
-	int	i;
+	static t_map	*map;
+	static t_info	*info;
+	int				i;
 
 	i = -1;
 	if (mssg)
@@ -43,17 +43,12 @@ void	clear_all(t_map *m, t_info *in, char *mssg, int status)
 		info = in;
 	else
 	{
-		free(info->c);
-		free(info->f);
-		free(info->so);
-		free(info->we);
-		free(info->ea);
-		free(info->no);
-		close(info->fd);
-		free(info);
-		while (map->map_content && map->map_content[++i])
-			free(map->map_content[i]);
-		free(map->map_content);
+		(1) && (free(info->c), free(info->f), free(info->so), \
+		free(info->ea), free(info->we), free(info->no), close(info->fd), \
+		free(info), 0);
+		while (map->content && map->content[++i])
+			free(map->content[i]);
+		free(map->content);
 		free(map);
 		exit(status);
 	}
@@ -61,7 +56,7 @@ void	clear_all(t_map *m, t_info *in, char *mssg, int status)
 
 void	print_error(char *mssg)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (mssg[++i])
@@ -71,11 +66,12 @@ void	print_error(char *mssg)
 
 int	array_size(char **array)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (!array)
 		return (0);
-	while (array[++i]);
+	while (array[++i])
+		;
 	return (i);
 }

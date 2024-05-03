@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 11:21:40 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 16:28:21 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void ll ()
 	system("leaks cub3D");
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	atexit(ll);
+	// atexit(ll);
 	t_info	*info;
 	t_map	*map;
 
@@ -40,12 +40,6 @@ int main(int ac, char **av)
 	if (info->fd == -1)
 		return (print_error("Error in file descriptor"), 1);
 	map = save_map(info);
-	// printf("map->c_col = %d\n", map->c_col);
-	// printf("map->f_col = %d\n", map->f_col);
-	// printf("%s\n", info->ea);
-	// printf("%s\n", info->we);
-	// printf("%s\n", info->so);
-	// printf("%s\n", info->no);
 	clear_all(NULL, NULL, NULL, 0);
-	return 0;
+	return (0);
 }

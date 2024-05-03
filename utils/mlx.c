@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/01 17:48:08 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 14:27:54 by mlouazir         ###   ########.fr       */
+/*   Created: 2024/05/03 16:16:12 by mlouazir          #+#    #+#             */
+/*   Updated: 2024/05/03 16:23:07 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../cub.h"
 
-int	ft_strcmp(char *s1, char *s2)
+void	mlx_inti(t_map *map)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] != s2[i])
-			return (s1[i] - s2[i]);
-		i++;
-	}
-	return (s1[i] - s2[i]);
+	map->init = mlx_init();
+	if (!(map->init))
+		clear_all(NULL, NULL, "Error in mlx", 1);
 }
