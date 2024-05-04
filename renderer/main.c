@@ -7,6 +7,8 @@
 #define screenWidth 1920
 #define screenHeight 1080
 
+#define C 0xAA000000
+#define F 0x0000AA00
 
 
 int worldMap[mapWidth][mapHeight]=
@@ -47,6 +49,10 @@ typedef struct	s_data {
 
 typedef struct s_vars
 {
+	void	*mlx;
+	void	*mlx_win;
+	t_data img;
+
 	double posX, posY;  //x and y start position
 	double dirX, dirY; //initial direction vector
 	double planeX, planeY; //the 2d raycaster version of camera plane
@@ -57,13 +63,30 @@ typedef struct s_vars
 
 } t_vars;
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+static inline void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
+
+void clear_img(t_data *data)
+{
+	int i = 0;
+	while (i < screenHeight) {
+		int j = 0;
+		while (j < screenWidth) {
+			if(i < (screenHeight/2))
+				my_mlx_pixel_put(data, j, i, F);
+			else 
+				my_mlx_pixel_put(data, j, i, C);
+			j++;
+		}
+		i++;
+	}
+}
+
 
 
 void draw_verline(t_data *data, int x, int start, int end, int color)
@@ -127,39 +150,20 @@ int	key_hook(int keycode, t_vars *v)
 	return (0);
 }
 
-int main()
+int renderer(t_vars *v)
 {
-
-	t_data img;
-	t_vars v = {.posX = 22, .posY = 12,  //x and y start position
-		.dirX = -1, .dirY = 0, //initial direction vector
-		.planeX = 0, .planeY = 0.66, //the 2d raycaster version of camera plane
-		.time = 0, //time of current frame
-		.moveSpeed = 0, //the constant value is in squares/second
-		.rotSpeed = 0, //the constant value is in radians/second
-	};
-	
-	
-	void	*mlx;
-	void	*mlx_win;
-
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, screenWidth, screenHeight, "cube3d");
-	mlx_key_hook(mlx_win, key_hook, &v);
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-	&img.endian);
 	int w = screenWidth;
+	clear_img(&v->img);
 	for(int x = 0; x < w; x++)
 	{
 		//calculate ray position and direction
 		double cameraX = 2 * x / (double)w - 1; //x-coordinate in camera space
-		double rayDirX = v.dirX + v.planeX * cameraX;
-		double rayDirY = v.dirY + v.planeY * cameraX;
+		double rayDirX = v->dirX + v->planeX * cameraX;
+		double rayDirY = v->dirY + v->planeY * cameraX;
 
 		//which box of the map we're in
-		int mapX = (int)v.posX;
-		int mapY = (int)v.posY;
+		int mapX = (int)v->posX;
+		int mapY = (int)v->posY;
 
 		//length of ray from current position to next x or y-side
 		double sideDistX;
@@ -180,22 +184,22 @@ int main()
 		if (rayDirX < 0)
 		{
 			stepX = -1;
-			sideDistX = (v.posX - mapX) * deltaDistX;
+			sideDistX = (v->posX - mapX) * deltaDistX;
 		}
 		else
 		{
 			stepX = 1;
-			sideDistX = (mapX + 1.0 - v.posX) * deltaDistX;
+			sideDistX = (mapX + 1.0 - v->posX) * deltaDistX;
 		}
 		if (rayDirY < 0)
 		{
 			stepY = -1;
-			sideDistY = (v.posY - mapY) * deltaDistY;
+			sideDistY = (v->posY - mapY) * deltaDistY;
 		}
 		else
 		{
 			stepY = 1;
-			sideDistY = (mapY + 1.0 - v.posY) * deltaDistY;
+			sideDistY = (mapY + 1.0 - v->posY) * deltaDistY;
 		}
 
 		//perform DDA
@@ -244,15 +248,40 @@ int main()
 		if (side == 1) {color = color / 2;}
 
 		//draw the pixels of the stripe as a vertical line
-		draw_verline(&img, x, drawStart, drawEnd, color);
+		draw_verline(&v->img, x, drawStart, drawEnd, color);
 		//timing for input and FPS counter
-		v.time++;
+		v->time++;
 
 		//speed modifiers
-		v.moveSpeed = 5.0; //the constant value is in squares/second
-		v.rotSpeed =  3.0; //the constant value is in radians/second
+		v->moveSpeed = 1.0; //the constant value is in squares/second
+		v->rotSpeed =  1.0; //the constant value is in radians/second
 	}
 
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	mlx_put_image_to_window(v->mlx, v->mlx_win, v->img.img, 0, 0);
+	return 0;
+}
+
+
+int main()
+{
+
+	t_vars v = {.posX = 22, .posY = 12,  //x and y start position
+		.dirX = -1, .dirY = 0, //initial direction vector
+		.planeX = 0, .planeY = 0.66, //the 2d raycaster version of camera plane
+		.time = 0, //time of current frame
+		.moveSpeed = 0, //the constant value is in squares/second
+		.rotSpeed = 0, //the constant value is in radians/second
+		.mlx = mlx_init(),
+	};
+	
+	
+
+	v.mlx_win = mlx_new_window(v.mlx, screenWidth, screenHeight, "cube3d"),
+	mlx_key_hook(v.mlx_win, key_hook, &v);
+	v.img.img = mlx_new_image(v.mlx, 1920, 1080);
+	v.img.addr = mlx_get_data_addr(v.img.img, &v.img.bits_per_pixel, &v.img.line_length,
+	&v.img.endian);
+	renderer(&v);
+	mlx_loop_hook(v.mlx, renderer, &v);
+	mlx_loop(v.mlx);
 }
