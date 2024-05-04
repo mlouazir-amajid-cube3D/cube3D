@@ -7,8 +7,8 @@
 #define screenWidth 1920
 #define screenHeight 1080
 
-#define C 0xAA000000
-#define F 0x0000AA00
+#define C 0x00555555
+#define F 0x00EEEEEE
 
 
 int worldMap[mapWidth][mapHeight]=
@@ -253,8 +253,8 @@ int renderer(t_vars *v)
 		v->time++;
 
 		//speed modifiers
-		v->moveSpeed = 1.0; //the constant value is in squares/second
-		v->rotSpeed =  1.0; //the constant value is in radians/second
+		v->moveSpeed = 0.5; //the constant value is in squares/second
+		v->rotSpeed =  0.2; //the constant value is in radians/second
 	}
 
 	mlx_put_image_to_window(v->mlx, v->mlx_win, v->img.img, 0, 0);
@@ -276,6 +276,7 @@ int main()
 	
 	
 
+	mlx_do_key_autorepeaton(v.mlx);	
 	v.mlx_win = mlx_new_window(v.mlx, screenWidth, screenHeight, "cube3d"),
 	mlx_key_hook(v.mlx_win, key_hook, &v);
 	v.img.img = mlx_new_image(v.mlx, 1920, 1080);
