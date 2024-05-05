@@ -124,6 +124,22 @@ int	key_hook(int keycode, t_vars *v)
       if(worldMap[(int)(v->posX - v->dirX * v->moveSpeed)][(int)(v->posY)] == 0) v->posX -= v->dirX * v->moveSpeed;
       if(worldMap[(int)(v->posX)][(int)(v->posY - v->dirY * v->moveSpeed)] == 0) v->posY -= v->dirY * v->moveSpeed;
     }
+	
+	if (keycode == 2)
+    {
+		double right_x = v->dirY;
+		double right_y = -v->dirX;
+		if(worldMap[(int)(v->posX + right_x * v->moveSpeed)][(int)(v->posY)] == 0) v->posX += right_x * v->moveSpeed;
+		if(worldMap[(int)(v->posX)][(int)(v->posY + right_y * v->moveSpeed)] == 0) v->posY += right_y * v->moveSpeed;
+    }
+	if (keycode == 0)
+    {
+		double right_x = v->dirY;
+		double right_y = -v->dirX;
+		if(worldMap[(int)(v->posX - right_x * v->moveSpeed)][(int)(v->posY)] == 0) v->posX -= right_x * v->moveSpeed;
+		if(worldMap[(int)(v->posX)][(int)(v->posY - right_y * v->moveSpeed)] == 0) v->posY -= right_y * v->moveSpeed;
+    }
+	
     //rotate to the right
     if (keycode == 124)
     {
@@ -253,7 +269,7 @@ int renderer(t_vars *v)
 		v->time++;
 
 		//speed modifiers
-		v->moveSpeed = 0.5; //the constant value is in squares/second
+		v->moveSpeed = 0.4; //the constant value is in squares/second
 		v->rotSpeed =  0.2; //the constant value is in radians/second
 	}
 
