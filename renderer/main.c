@@ -7,8 +7,8 @@
 #define screenWidth 1920
 #define screenHeight 1080
 
-#define C 0xAA000000
-#define F 0x0000AA00
+#define C 0x00555555
+#define F 0x00EEEEEE
 
 
 int worldMap[mapWidth][mapHeight]=
@@ -124,6 +124,22 @@ int	key_hook(int keycode, t_vars *v)
       if(worldMap[(int)(v->posX - v->dirX * v->moveSpeed)][(int)(v->posY)] == 0) v->posX -= v->dirX * v->moveSpeed;
       if(worldMap[(int)(v->posX)][(int)(v->posY - v->dirY * v->moveSpeed)] == 0) v->posY -= v->dirY * v->moveSpeed;
     }
+	
+	if (keycode == 2)
+    {
+		double right_x = v->dirY;
+		double right_y = -v->dirX;
+		if(worldMap[(int)(v->posX + right_x * v->moveSpeed)][(int)(v->posY)] == 0) v->posX += right_x * v->moveSpeed;
+		if(worldMap[(int)(v->posX)][(int)(v->posY + right_y * v->moveSpeed)] == 0) v->posY += right_y * v->moveSpeed;
+    }
+	if (keycode == 0)
+    {
+		double right_x = v->dirY;
+		double right_y = -v->dirX;
+		if(worldMap[(int)(v->posX - right_x * v->moveSpeed)][(int)(v->posY)] == 0) v->posX -= right_x * v->moveSpeed;
+		if(worldMap[(int)(v->posX)][(int)(v->posY - right_y * v->moveSpeed)] == 0) v->posY -= right_y * v->moveSpeed;
+    }
+	
     //rotate to the right
     if (keycode == 124)
     {
@@ -253,8 +269,8 @@ int renderer(t_vars *v)
 		v->time++;
 
 		//speed modifiers
-		v->moveSpeed = 1.0; //the constant value is in squares/second
-		v->rotSpeed =  1.0; //the constant value is in radians/second
+		v->moveSpeed = 0.4; //the constant value is in squares/second
+		v->rotSpeed =  0.2; //the constant value is in radians/second
 	}
 
 	mlx_put_image_to_window(v->mlx, v->mlx_win, v->img.img, 0, 0);
@@ -276,6 +292,7 @@ int main()
 	
 	
 
+	mlx_do_key_autorepeaton(v.mlx);	
 	v.mlx_win = mlx_new_window(v.mlx, screenWidth, screenHeight, "cube3d"),
 	mlx_key_hook(v.mlx_win, key_hook, &v);
 	v.img.img = mlx_new_image(v.mlx, 1920, 1080);
