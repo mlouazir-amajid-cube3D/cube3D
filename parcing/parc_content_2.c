@@ -6,11 +6,26 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:02:59 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 16:07:33 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:49:49 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
+
+void	fill_gaps(char **content)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (content[++i])
+	{
+		j = -1;
+		while (content[i][++j])
+			if (content[i][j] == ' ' || content[i][j] == '\t')
+				content[i][j] = '0';
+	}
+}
 
 int	is_empty(char c)
 {
@@ -42,5 +57,5 @@ int	empty_space_check(char **content)
 			}
 		}
 	}
-	return (0);
+	return (fill_gaps(content), 0);
 }

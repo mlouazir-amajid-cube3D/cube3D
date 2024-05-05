@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 20:57:11 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 16:41:33 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/05 19:41:07 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	map_init(t_map **map)
 	(*map)->ea_tex = NULL;
 	(*map)->c_col = 0;
 	(*map)->f_col = 0;
+	(*map)->size = 16;
 }
 
 t_map	*save_map(t_info *info)

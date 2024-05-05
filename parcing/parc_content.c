@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:54:24 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 16:10:16 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 20:21:08 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,25 @@
 
 void	add_line(t_map *map, char *line)
 {
-	char	**new_map;
-	int		length;
-	int		x;
+	char		**new_map;
+	static int	length;
+	int			i;
 
-	x = 16;
-	length = array_size(map->content) + 1;
-	while (x <= length)
-		x *= 2;
-	new_map = malloc(sizeof(char *) * x);
+	if ((length + 2) >= map->size)
+		map->size *= 2;
+	new_map = malloc(sizeof(char *) * map->size);
 	(!new_map) && (clear_all(NULL, NULL, "Fail in malloc", 1), 0);
-	x = 0;
-	while (map->content && map->content[x])
+	i = 0;
+	while (map->content && map->content[i])
 	{
-		new_map[x] = map->content[x];
-		x++;
+		new_map[i] = map->content[i];
+		i++;
 	}
-	new_map[x++] = line;
-	new_map[x] = NULL;
+	new_map[i++] = line;
+	new_map[i] = NULL;
 	free(map->content);
 	map->content = new_map;
+	length++;
 }
 
 int	is_map_char(char c, int pass)

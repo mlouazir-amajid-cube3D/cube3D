@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 16:23:12 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/03 21:06:52 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@
 # include <fcntl.h>
 # include "./utils/libft/libft.h"
 
-// #define malloc(x) Malloc(x, __FILE__, __LINE__)
 
-// void	*Malloc(int x, char *file, int line);
 typedef struct s_info
 {
 	char	**map;
@@ -46,6 +44,7 @@ typedef struct s_map
 	void	*init;
 	int		f_col;
 	int		c_col;
+	int		size;
 }	t_map;
 
 void	print_error(char *mssg);
