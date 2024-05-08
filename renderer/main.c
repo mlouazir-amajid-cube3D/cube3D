@@ -8,8 +8,6 @@
 #define screenWidth 1920
 #define screenHeight 1080
 
-#define C 0x00555555
-#define F 0x00EEEEEE
 
 
 // int worldMap[mapWidth][mapHeight]=
@@ -46,6 +44,8 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	int F;
+	int C;
 }				t_data;
 
 typedef struct s_vars
@@ -79,9 +79,9 @@ void clear_img(t_data *data)
 		int j = 0;
 		while (j < screenWidth) {
 			if(i < (screenHeight/2))
-				my_mlx_pixel_put(data, j, i, F);
+				my_mlx_pixel_put(data, j, i, data->F);
 			else 
-				my_mlx_pixel_put(data, j, i, C);
+				my_mlx_pixel_put(data, j, i, data->C);
 			j++;
 		}
 		i++;
@@ -300,6 +300,9 @@ int renderer_init(t_map *map)
 	v.img.img = mlx_new_image(v.mlx, 1920, 1080);
 	v.img.addr = mlx_get_data_addr(v.img.img, &v.img.bits_per_pixel, &v.img.line_length,
 	&v.img.endian);
+	v.img.F = map->f_col;
+	v.img.C = map->c_col;
+	
 	renderer(&v);
 	mlx_loop_hook(v.mlx, renderer, &v);
 	mlx_loop(v.mlx);
