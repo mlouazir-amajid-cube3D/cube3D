@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:54:24 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 20:21:08 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:03:55 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,6 @@ void	map_content_check(t_map *map, t_info *info, char *line)
 	}
 	first_last_lines(map, tmp, 1);
 	(p == 0) && (clear_all(NULL, NULL, "Map with no player", 1), 0);
-	(empty_space_check(map->content)) \
+	(empty_space_check(map)) \
 	&& (clear_all(NULL, NULL, "Space next to a char", 1), 0);
 }
