@@ -116,29 +116,29 @@ int	key_hook(int keycode, t_vars *v)
 	  //move forward if no wall in front of you
     if (keycode == 13)
     {
-      if(v->map->content[(int)(v->posX + v->dirX * v->moveSpeed)][(int)(v->posY)] == '0') v->posX += v->dirX * v->moveSpeed;
-      if(v->map->content[(int)(v->posX)][(int)(v->posY + v->dirY * v->moveSpeed)] == '0') v->posY += v->dirY * v->moveSpeed;
+      if(v->map->content[(int)(v->posY)][(int)(v->posX + v->dirX * v->moveSpeed)] == '0') v->posX += v->dirX * v->moveSpeed;
+      if(v->map->content[(int)(v->posY + v->dirY * v->moveSpeed)][(int)(v->posX)] == '0') v->posY += v->dirY * v->moveSpeed;
     }
     //move backwards if no wall behind you
     if (keycode == 1)
     {
-      if(v->map->content[(int)(v->posX - v->dirX * v->moveSpeed)][(int)(v->posY)] == '0') v->posX -= v->dirX * v->moveSpeed;
-      if(v->map->content[(int)(v->posX)][(int)(v->posY - v->dirY * v->moveSpeed)] == '0') v->posY -= v->dirY * v->moveSpeed;
+      if(v->map->content[(int)(v->posY)][(int)(v->posX - v->dirX * v->moveSpeed)] == '0') v->posX -= v->dirX * v->moveSpeed;
+      if(v->map->content[(int)(v->posY - v->dirY * v->moveSpeed)][(int)(v->posX)] == '0') v->posY -= v->dirY * v->moveSpeed;
     }
 	
 	if (keycode == 2)
     {
 		double right_x = v->dirY;
 		double right_y = -v->dirX;
-		if(v->map->content[(int)(v->posX + right_x * v->moveSpeed)][(int)(v->posY)] == '0') v->posX += right_x * v->moveSpeed;
-		if(v->map->content[(int)(v->posX)][(int)(v->posY + right_y * v->moveSpeed)] == '0') v->posY += right_y * v->moveSpeed;
+		if(v->map->content[(int)(v->posY)][(int)(v->posX + right_x * v->moveSpeed)] == '0') v->posX += right_x * v->moveSpeed;
+		if(v->map->content[(int)(v->posY + right_y * v->moveSpeed)][(int)(v->posX)] == '0') v->posY += right_y * v->moveSpeed;
     }
 	if (keycode == 0)
     {
 		double right_x = v->dirY;
 		double right_y = -v->dirX;
-		if(v->map->content[(int)(v->posX - right_x * v->moveSpeed)][(int)(v->posY)] == '0') v->posX -= right_x * v->moveSpeed;
-		if(v->map->content[(int)(v->posX)][(int)(v->posY - right_y * v->moveSpeed)] == '0') v->posY -= right_y * v->moveSpeed;
+		if(v->map->content[(int)(v->posY)][(int)(v->posX - right_x * v->moveSpeed)] == '0') v->posX -= right_x * v->moveSpeed;
+		if(v->map->content[(int)(v->posY - right_y * v->moveSpeed)][(int)(v->posX)] == '0') v->posY -= right_y * v->moveSpeed;
     }
 	
     //rotate to the right
@@ -236,7 +236,7 @@ int renderer(t_vars *v)
 				side = 1;
 			}
 			//Check if ray has hit a wall
-			if (v->map->content[mapX][mapY] > '0') hit = 1;
+			if (v->map->content[mapY] != NULL && v->map->content[mapY][mapX] != 0 && v->map->content[mapY][mapX] > '0') hit = 1;
 		} 
 
 		//Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
@@ -254,11 +254,11 @@ int renderer(t_vars *v)
 		//choose wall color
 		int color;
 		{
-			color = 0x00FF0000 * (v->map->content[mapX][mapY] == '1') +  //red
-			0x0000FF00 * (v->map->content[mapX][mapY] == '2') +   //green
-			0x000000FF * (v->map->content[mapX][mapY] == '3') +  //blue
-			0x00FFFFFF * (v->map->content[mapX][mapY] == '4') +  //white
-			0x00FFFF00 * (v->map->content[mapX][mapY] == '0'	);  //yellow
+			color = 0x00FF0000 * (v->map->content[mapY][mapX] == '1') +  //red
+			0x0000FF00 * (v->map->content[mapY][mapX] == '2') +   //green
+			0x000000FF * (v->map->content[mapY][mapX] == '3') +  //blue
+			0x00FFFFFF * (v->map->content[mapY][mapX] == '4') +  //white
+			0x00FFFF00 * (v->map->content[mapY][mapX] == '0'	);  //yellow
 		}
 
 		//give x and y sides different brightness
@@ -281,8 +281,9 @@ int renderer(t_vars *v)
 
 int renderer_init(t_map *map)
 {
-
-	t_vars v = {.posX = 2, .posY = 2,  //x and y start position
+	printf("map->player_pos_x = %d, map->player_pos_y = %d\n", map->player_pos_x, map->player_pos_y);
+	t_vars v = {//.posX = 1, .posY = 1,
+		.posX = map->player_pos_x + .3f, .posY = map->player_pos_y + .3f,  //x and y start position
 		.dirX = -1, .dirY = 0, //initial direction vector
 		.planeX = 0, .planeY = 0.66, //the 2d raycaster version of camera plane
 		.time = 0, //time of current frame
