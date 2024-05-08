@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 21:06:52 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:48:58 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ int		is_map_char(char c, int pass);
 int		empty_space_check(char **content);
 void	texture_file_check(t_map *map, t_info *info);
 void	mlx_inti(t_map *map);
+int renderer_init(t_map *map);
 #endif
