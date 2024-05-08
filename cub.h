@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/08 17:48:58 by amajid           ###   ########.fr       */
+/*   Updated: 2024/05/08 18:09:26 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ typedef struct s_map
 	int		f_col;
 	int		c_col;
 	int		size;
+	int		player_pos_x;
+	int		player_pos_y;
+	char	orientation;
 }	t_map;
 
 void	print_error(char *mssg);
@@ -58,7 +61,7 @@ void	generate_colors(int *dest, char *src);
 void	map_content_check(t_map *map, t_info *info, char *line);
 int		array_size(char **array);
 int		is_map_char(char c, int pass);
-int		empty_space_check(char **content);
+int		empty_space_check(t_map *map);
 void	texture_file_check(t_map *map, t_info *info);
 void	mlx_inti(t_map *map);
 int renderer_init(t_map *map);

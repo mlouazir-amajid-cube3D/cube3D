@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:02:59 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/05 19:49:49 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/08 18:07:39 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,40 @@ int	is_empty(char c)
 	return (c == ' ' || c == '\t' || c == '\0');
 }
 
-int	empty_space_check(char **content)
+void	store_player(t_map *map, char c, int i, int j)
+{
+	if (c == '0')
+		return ;
+	map->player_pos_x = j;
+	map->player_pos_y = i;
+	map->orientation = c;
+}
+
+int	empty_space_check(t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	while (content[++i])
+	while (map->content[++i])
 	{
 		j = -1;
-		while (content[i][++j])
+		while (map->content[i][++j])
 		{
-			if (is_map_char(content[i][j], 1))
+			if (is_map_char(map->content[i][j], 1))
 			{
-				if (i - 1 > -1 && is_empty(content[i - 1][j]))
+				if (i - 1 > -1 && is_empty(map->content[i - 1][j]))
 					return (1);
-				if (j - 1 > -1 && is_empty(content[i][j - 1]))
+				if (j - 1 > -1 && is_empty(map->content[i][j - 1]))
 					return (1);
-				if (j + 1 < ft_strlen(content[i]) \
-				&& is_empty(content[i][j + 1]))
+				if (j + 1 < ft_strlen(map->content[i]) \
+				&& is_empty(map->content[i][j + 1]))
 					return (1);
-				if (i + 1 < array_size(content) && is_empty(content[i + 1][j]))
+				if (i + 1 < array_size(map->content) && is_empty(map->content[i + 1][j]))
 					return (1);
+				store_player(map, map->content[i][j], i, j);
 			}
 		}
 	}
-	return (fill_gaps(content), 0);
+	return (fill_gaps(map->content), 0);
 }
