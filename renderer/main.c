@@ -8,61 +8,18 @@
 #define screenWidth 1920
 #define screenHeight 1080
 
-
-
-// int worldMap[mapWidth][mapHeight]=
-// {
-//   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-//   {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-//   {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-// };
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int F;
-	int C;
-}				t_data;
-
-typedef struct s_vars
+int	getcolor(t_vars *v, int x, int y)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data img;
+	char *add;
+	int	bp;
+	int	sl;
+	int	en;
+	int res;
 
-	double posX, posY;  //x and y start position
-	double dirX, dirY; //initial direction vector
-	double planeX, planeY; //the 2d raycaster version of camera plane
-	unsigned int time; //time of current frame
-	//speed modifiers
-	double moveSpeed; //the constant value is in squares/second
-	double rotSpeed; //the constant value is in radians/second
-	t_map *map;
-} t_vars;
+	add = mlx_get_data_addr(v->map->ea_tex, &bp, &sl, &en);
+	res = *(unsigned int*)(add + (y * sl + x * (bp / 8)));
+	return (res);
+}
 
 static inline void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -88,17 +45,15 @@ void clear_img(t_data *data)
 	}
 }
 
-
-
-void draw_verline(t_data *data, int x, int start, int end, int color)
+void draw_verline(t_data *data, int x, int start, int end, int* color)
 {
+	int	i = 0;
 
 	while(start < end)
 	{
-		my_mlx_pixel_put(data, x, start, color);
+		my_mlx_pixel_put(data, x, start, color[i++]);
 		start++;
 	}
-
 }
 
 double abs_d(double x)
@@ -111,8 +66,6 @@ double abs_d(double x)
 
 int	key_hook(int keycode, t_vars *v)
 {
-	printf("Hello from key_hook!, %d\n", keycode);
-
 	  //move forward if no wall in front of you
     if (keycode == 13)
     {
@@ -177,8 +130,8 @@ int renderer(t_vars *v)
 		double cameraX = 2 * x / (double)w - 1; //x-coordinate in camera space
 		double rayDirX = v->dirX + v->planeX * cameraX;
 		double rayDirY = v->dirY + v->planeY * cameraX;
-
-		//which box of the map we're in
+		
+		//which box of the map we're i
 		int mapX = (int)v->posX;
 		int mapY = (int)v->posY;
 
@@ -250,26 +203,41 @@ int renderer(t_vars *v)
 		int drawStart = -lineHeight / 2 + h / 2;
 		if(drawStart < 0)drawStart = 0;
 		int drawEnd = lineHeight / 2 + h / 2;
-		if(drawEnd >= h)drawEnd = h - 1;	
-		//choose wall color
-		int color;
+		if(drawEnd >= h)drawEnd = h - 1;
+
+		double wallx;
+		int		tex;
+
+		if (!side)
+			wallx = rayDirY  * perpWallDist + v->posY;
+		else
+			wallx = rayDirX  * perpWallDist + v->posX;
+
+		wallx -= floor(wallx);
+
+		tex = wallx * 64.f;
+
+		if(side == 0 && rayDirX > 0) tex = 64 - tex - 1;
+      	if(side == 1 && rayDirY < 0) tex = 64 - tex - 1;
+		double steps;
+
+		steps = 64 / lineHeight;
+
+		double texPos = (drawStart - h / 2 + lineHeight / 2) * steps;
+
+		int	*buf = malloc(sizeof(int) * (drawEnd - drawStart));
+		int	index = 0;
+		for (int y = drawStart; y < drawEnd; y++)
 		{
-			color = 0x00FF0000 * (v->map->content[mapY][mapX] == '1') +  //red
-			0x0000FF00 * (v->map->content[mapY][mapX] == '2') +   //green
-			0x000000FF * (v->map->content[mapY][mapX] == '3') +  //blue
-			0x00FFFFFF * (v->map->content[mapY][mapX] == '4') +  //white
-			0x00FFFF00 * (v->map->content[mapY][mapX] == '0'	);  //yellow
+			int texY = (int)texPos & (64 - 1);
+			texPos += steps;
+			buf[index] = getcolor(v, tex, texY);
+			index++;
 		}
-
-		//give x and y sides different brightness
-		if (side == 1) {color = color / 2;}
-
-		//draw the pixels of the stripe as a vertical line
-		draw_verline(&v->img, x, drawStart, drawEnd, color);
-		//timing for input and FPS counter
+		draw_verline(&v->img, x, drawStart, drawEnd, buf);
+		free(buf);
 		v->time++;
 
-		//speed modifiers
 		v->moveSpeed = 0.4; //the constant value is in squares/second
 		v->rotSpeed =  0.2; //the constant value is in radians/second
 	}
@@ -285,7 +253,7 @@ int renderer_init(t_map *map)
 	t_vars v = {//.posX = 1, .posY = 1,
 		.posX = map->player_pos_x + .3f, .posY = map->player_pos_y + .3f,  //x and y start position
 		.dirX = -1, .dirY = 0, //initial direction vector
-		.planeX = 0, .planeY = 0.66, //the 2d raycaster version of camera plane
+		.planeX = 0, .planeY = 1.0f, //the 2d raycaster version of camera plane
 		.time = 0, //time of current frame
 		.moveSpeed = 0, //the constant value is in squares/second
 		.rotSpeed = 0, //the constant value is in radians/second
@@ -293,8 +261,6 @@ int renderer_init(t_map *map)
 		.map = map
 	};
 	
-	
-
 	mlx_do_key_autorepeaton(v.mlx);	
 	v.mlx_win = mlx_new_window(v.mlx, screenWidth, screenHeight, "cube3d"),
 	mlx_key_hook(v.mlx_win, key_hook, &v);
