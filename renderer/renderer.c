@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 10:18:17 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/12 17:55:16 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/12 19:06:39 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ void	start_dda(t_vars *v, t_render *tool)
 	tool->side = 0;
 	while (1)
 	{
-		if (tool->ray_dir_x < tool->ray_dir_y)
+		if (tool->side_dist_x < tool->side_dist_y)
 		{
 			tool->side_dist_x += tool->delta_dist_x;
 			tool->map_x += tool->step_x;
 			tool->side = 0;
 		}
-		else if (tool->ray_dir_y < tool->ray_dir_x)
+		else
 		{
 			tool->side_dist_y += tool->delta_dist_y;
 			tool->map_y += tool->step_y;
 			tool->side = 1;
 		}
-		if (v->map->content[tool->map_y][tool->map_x] \
+		if (v->map->content[tool->map_y][tool->map_x]
 			&& v->map->content[tool->map_y][tool->map_x] != '0')
 				break;
 	}
@@ -38,15 +38,14 @@ void	start_dda(t_vars *v, t_render *tool)
 	else
 		tool->perp_wall_distance = tool->side_dist_x - tool->delta_dist_x;
 	tool->line_height = (int)(SCREEN_HEIGHT / tool->perp_wall_distance);
-	// printf("tool->perpwallt  %f || tool->line_height  %d\n", tool->perp_wall_distance, tool->line_height);
 }
 
 void	set_dist(t_vars *v, t_render *tool)
 {
-	tool->delta_dist_x = abs_d(1 / tool->ray_dir_x);
-	tool->delta_dist_y = abs_d(1 / tool->ray_dir_y);
 	tool->map_x = (int)v->pos_x;
 	tool->map_y = (int)v->pos_y;
+	tool->delta_dist_x = abs_d(1.0f / tool->ray_dir_x);
+	tool->delta_dist_y = abs_d(1.0f / tool->ray_dir_y);
 	if (tool->ray_dir_x < 0)
 	{
 		tool->side_dist_x = (v->pos_x - tool->map_x) * tool->delta_dist_x;
@@ -72,14 +71,14 @@ void	set_dist(t_vars *v, t_render *tool)
 int renderer(t_vars *v)
 {
 	t_render	*tool;
-	int			w;
+	int			x;
 	
-	w = 0;
+	x = 0;
 	tool = malloc(sizeof(t_render));
 	clear_img(&v->img);
-	while (w < SCREEN_WIDTH)
+	while (x < SCREEN_WIDTH)
 	{
-		tool->camera_x = 2 * w / (double)w - 1;
+		tool->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
 		tool->ray_dir_x = v->dir_x + v->plane_x * tool->camera_x;
 		tool->ray_dir_y = v->dir_y + v->plane_y * tool->camera_x;
 		set_dist(v, tool);
@@ -88,17 +87,17 @@ int renderer(t_vars *v)
 		(tool->draw_start < 0) && (tool->draw_start = 0);
 		tool->draw_end = SCREEN_HEIGHT / 2 + tool->line_height / 2;
 		(tool->draw_end >= SCREEN_HEIGHT) && (tool->draw_end = SCREEN_HEIGHT - 1);
-		printf("tool->draw_start %d || tool->draw_end %d || tool->line_height %d || tool->ray_dir_x %f ||  tool->ray_dir_y %f\n", tool->draw_start, tool->draw_end, tool->line_height, tool->ray_dir_x, tool->ray_dir_y);
+		// printf("camera %f || tool->draw_start %d || tool->draw_end %d || tool->line_height %d || tool->ray_dir_x %f ||  tool->ray_dir_y %f\n", tool->camera_x, tool->draw_start, tool->draw_end, tool->line_height, tool->ray_dir_x, tool->ray_dir_y);
 		if (tool->side)
-			draw_verline(&v->img, w, tool->draw_start, tool->draw_end, 5000);
+			draw_verline(&v->img, x, tool->draw_start, tool->draw_end, 5000);
 		else
-			draw_verline(&v->img, w, tool->draw_start, tool->draw_end, 9999);
+			draw_verline(&v->img, x, tool->draw_start, tool->draw_end, 9999);
 		v->time++;
 		v->move_speed = 0.4;
 		v->rot_speed = 0.2;
-		w++;
+		x++;
 	}
-	mlx_put_image_to_window(v->mlx, v->mlx_win, v->img.img, 0, 0);
+		mlx_put_image_to_window(v->mlx, v->mlx_win, v->img.img, 0, 0);
 	return 0;
 }
 
@@ -106,28 +105,35 @@ void	set_vector(t_map *map, t_vars *v)
 {
 	if (map->orientation == 'N')
 	{
-		v->dir_x = 0;
-		v->dir_y = 1;
-	}
-	else if (map->orientation == 'S')
-	{
+		v->plane_y = 0;
+		v->plane_x = -0.66f;
 		v->dir_x = 0;
 		v->dir_y = -1;
 	}
+	else if (map->orientation == 'S')
+	{
+		v->plane_y = 0;
+		v->plane_x = 0.66f;
+		v->dir_x = 0;
+		v->dir_y = 1;
+	}
 	else if (map->orientation == 'E')
 	{
+		v->plane_y = -0.66f;
+		v->plane_x = 0;
 		v->dir_x = 1;
 		v->dir_y = 0;
 	}
 	else if (map->orientation == 'W')
 	{
+		v->plane_y = 0.66f;
+		v->plane_x = 0;
 		v->dir_x = -1;
 		v->dir_y = 0;
 	}
 	v->pos_x = map->player_pos_x + .3f;
 	v->pos_y = map->player_pos_y + .3f;
-	v->plane_x = 0;
-	v->plane_y = .66f;
+	
 }
 
 int	re_init(t_map *map)
@@ -135,7 +141,7 @@ int	re_init(t_map *map)
 	t_vars v;
 
 	set_vector(map, &v);
-	v.move_speed = 0;
+	v.move_speed = 0.4;
 	v.rot_speed = 0;
 	v.map = map;
 	v.mlx = map->init;

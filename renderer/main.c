@@ -51,7 +51,7 @@ void clear_img(t_data *data)
 		j = 0;
 		while (j < SCREEN_WIDTH)
 		{
-			if (i < (SCREEN_WIDTH / 2))
+			if (i < (SCREEN_HEIGHT / 2))
 				my_mlx_pixel_put(data, j, i, data->F);
 			else 
 				my_mlx_pixel_put(data, j, i, data->C);
@@ -65,6 +65,7 @@ void draw_verline(t_data *data, int x, int start, int end, int color)
 {
 	while(start < end)
 	{
+		// printf("x = %d\n", x);
 		my_mlx_pixel_put(data, x, start, color);
 		start++;
 	}
