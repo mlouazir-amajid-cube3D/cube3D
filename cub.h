@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/11 18:31:46 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/12 16:17:33 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,32 @@
 # include <unistd.h>
 # include <mlx.h>
 # include <fcntl.h>
+# include <math.h>
 # include "./utils/libft/libft.h"
+
+# define MAP_WIDTH 10
+# define MAP_HEIGHT 10
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
+
+typedef struct s_render {
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_distance;
+	int		side;
+	int		line_height;
+	int		step_x;
+	int		step_y;
+	int		map_x;
+	int		map_y;
+	int		draw_start;
+	int		draw_end;
+}	t_render;
 
 typedef struct	s_data {
 	void	*img;
@@ -26,25 +51,25 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int F;
-	int C;
-}				t_data;
-
+	int 	F;
+	int		C;
+}	t_data;
 
 typedef struct s_vars
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data img;
-
-	double posX, posY;  //x and y start position
-	double dirX, dirY; //initial direction vector
-	double planeX, planeY; //the 2d raycaster version of camera plane
-	unsigned int time; //time of current frame
-	//speed modifiers
-	double moveSpeed; //the constant value is in squares/second
-	double rotSpeed; //the constant value is in radians/second
-	struct s_map *map;
+	void			*mlx;
+	void			*mlx_win;
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+	unsigned int	time;
+	double 			move_speed;
+	double 			rot_speed;
+	struct s_map 	*map;
+	t_data 			img;
 } t_vars;
 
 typedef struct s_info
@@ -90,6 +115,11 @@ int		is_map_char(char c, int pass);
 int		empty_space_check(t_map *map);
 void	texture_file_check(t_map *map, t_info *info);
 void	mlx_inti(t_map *map);
-int renderer_init(t_map *map);
+// int		renderer_init(t_map *map);
 static inline void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		key_hook(int keycode, t_vars *v);
+double	abs_d(double x);
+void	draw_verline(t_data *data, int x, int start, int end, int color);
+int		re_init(t_map *map);
+void	clear_img(t_data *data);
 #endif

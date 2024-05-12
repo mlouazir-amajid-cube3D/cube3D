@@ -3,6 +3,8 @@
 		"cub.h": "c",
 		"stdio.h": "c",
 		"mlx.h": "c",
-		"math.h": "c"
+		"math.h": "c",
+		"cmath": "c",
+		"complex": "c"
 	}
 }
