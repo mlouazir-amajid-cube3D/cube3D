@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/12 16:17:33 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:48:34 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@
 # include <math.h>
 # include "./utils/libft/libft.h"
 
-# define MAP_WIDTH 10
-# define MAP_HEIGHT 10
 # define SCREEN_WIDTH 1920
 # define SCREEN_HEIGHT 1080
 
-typedef struct s_render {
+typedef struct s_render
+{
 	double	camera_x;
 	double	ray_dir_x;
 	double	ray_dir_y;
@@ -43,16 +42,18 @@ typedef struct s_render {
 	int		map_y;
 	int		draw_start;
 	int		draw_end;
+	int		x;
 }	t_render;
 
-typedef struct	s_data {
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int 	F;
-	int		C;
+	int		f;
+	int		c;
 }	t_data;
 
 typedef struct s_vars
@@ -66,11 +67,13 @@ typedef struct s_vars
 	double			plane_x;
 	double			plane_y;
 	unsigned int	time;
-	double 			move_speed;
-	double 			rot_speed;
-	struct s_map 	*map;
-	t_data 			img;
-} t_vars;
+	double			move_speed;
+	double			rot_speed;
+	int				mouse_movement;
+	int				original_x;
+	struct s_map	*map;
+	t_data			img;
+}	t_vars;
 
 typedef struct s_info
 {
@@ -115,11 +118,13 @@ int		is_map_char(char c, int pass);
 int		empty_space_check(t_map *map);
 void	texture_file_check(t_map *map, t_info *info);
 void	mlx_inti(t_map *map);
-// int		renderer_init(t_map *map);
-static inline void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		key_hook(int keycode, t_vars *v);
 double	abs_d(double x);
-void	draw_verline(t_data *data, int x, int start, int end, int color);
 int		re_init(t_map *map);
 void	clear_img(t_data *data);
+void	put_texture(t_vars *v, t_render *tool);
+void	set_vector(t_map *map, t_vars *v);
+int		mouse_in_motion(int x, int y, t_vars *v);
+int		renderer(t_vars *v);
 #endif

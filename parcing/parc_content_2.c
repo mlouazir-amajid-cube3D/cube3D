@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 15:02:59 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/08 18:07:39 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:22:23 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,22 @@ void	store_player(t_map *map, char c, int i, int j)
 	map->player_pos_x = j;
 	map->player_pos_y = i;
 	map->orientation = c;
+	map->content[i][j] = '0';
+}
+
+int	empty_space_check_helper(t_map *map, int i, int j)
+{
+	if (i - 1 > -1 && is_empty(map->content[i - 1][j]))
+		return (1);
+	if (j - 1 > -1 && is_empty(map->content[i][j - 1]))
+		return (1);
+	if (j + 1 < ft_strlen(map->content[i]) \
+	&& is_empty(map->content[i][j + 1]))
+		return (1);
+	if (i + 1 < array_size(map->content) \
+	&& is_empty(map->content[i + 1][j]))
+		return (1);
+	return (0);
 }
 
 int	empty_space_check(t_map *map)
@@ -54,14 +70,7 @@ int	empty_space_check(t_map *map)
 		{
 			if (is_map_char(map->content[i][j], 1))
 			{
-				if (i - 1 > -1 && is_empty(map->content[i - 1][j]))
-					return (1);
-				if (j - 1 > -1 && is_empty(map->content[i][j - 1]))
-					return (1);
-				if (j + 1 < ft_strlen(map->content[i]) \
-				&& is_empty(map->content[i][j + 1]))
-					return (1);
-				if (i + 1 < array_size(map->content) && is_empty(map->content[i + 1][j]))
+				if (empty_space_check_helper(map, i, j))
 					return (1);
 				store_player(map, map->content[i][j], i, j);
 			}

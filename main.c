@@ -6,20 +6,20 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/12 15:39:32 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:25:58 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void ll () 
-{
-	system("leaks cub3D");
-}
+// void ll	() 
+// {
+// 	system("leaks cub3D");
+// }
 
 int	main(int ac, char **av)
 {
-	atexit(ll);
+	// atexit(ll);
 	t_info	*info;
 	t_map	*map;
 
