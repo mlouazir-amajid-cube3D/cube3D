@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:50:16 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/13 17:55:05 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:26:35 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	put_texture(t_vars *v, t_render *tool)
 		wall_point = v->pos_x + tool->perp_wall_distance * tool->ray_dir_x;
 	wall_point -= floor(wall_point);
 	text_x = (int)(wall_point * 64.f);
-	if ((!tool->side && tool->delta_dist_x > 0) \
-	|| (tool->side && tool->ray_dir_x < 0))
+	if ((!tool->side && tool->ray_dir_x > 0) \
+	|| (tool->side && tool->ray_dir_y < 0))
 		text_x = 64 - text_x - 1;
 	step_taken = 1.0 * 64 / tool->line_height;
 	set_buff(v, tool, step_taken, text_x);

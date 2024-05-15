@@ -6,11 +6,18 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 10:29:28 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/13 18:49:20 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:49:24 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
+
+int	win_destroyed(t_vars *v)
+{
+	(void)v;
+	clear_all(NULL, NULL, NULL, 0);
+	return (0);
+}
 
 void	key_hook_4(int keycode, t_vars *v)
 {
@@ -29,7 +36,7 @@ void	key_hook_4(int keycode, t_vars *v)
 		sin(v->rot_speed) + v->plane_y * cos(v->rot_speed);
 	}
 	if (keycode == 53)
-		clear_all(NULL, NULL, NULL, 0);
+		win_destroyed(NULL);
 }
 
 void	key_hook_3(int keycode, t_vars *v)

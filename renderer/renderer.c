@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 10:18:17 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/13 20:20:14 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:09:59 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,9 @@ int	re_init(t_map *map)
 	&v.img.line_length, &v.img.endian);
 	v.img.f = map->f_col;
 	v.img.c = map->c_col;
-	// mlx_hook(v.mlx_win, 2, 0, key_hook, &v);
-	// mlx_hook(v.map->init, 6, 0, mouse_in_motion, &v);
+	mlx_key_hook(v.mlx_win, key_hook, &v);
 	mlx_loop_hook(v.map->init, renderer, &v);
+	// mlx_hook(v.map->init, 17, 0, win_destroyed, &v);
 	mlx_loop(v.map->init);
 	return (0);
 }
