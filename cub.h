@@ -6,7 +6,7 @@
 /*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 17:58:38 by amajid           ###   ########.fr       */
+/*   Updated: 2024/05/15 19:13:48 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,6 @@ void	put_texture(t_vars *v, t_render *tool);
 void	set_vector(t_map *map, t_vars *v);
 int		renderer(t_vars *v);
 int		win_destroyed(t_vars *v);
-void	destroy(t_vars *v);
-
+void	*mlx_window(void *mlx_ptr);
+void	*mlx_image(void *mlx_ptr, int width, int height);
 #endif
