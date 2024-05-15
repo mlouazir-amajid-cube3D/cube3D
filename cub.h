@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 10:49:17 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:01:26 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int		re_init(t_map *map);
 void	clear_img(t_data *data);
 void	put_texture(t_vars *v, t_render *tool);
 void	set_vector(t_map *map, t_vars *v);
-int		mouse_in_motion(int x, int y, t_vars *v);
 int		renderer(t_vars *v);
 int		win_destroyed(t_vars *v);
+
 #endif
