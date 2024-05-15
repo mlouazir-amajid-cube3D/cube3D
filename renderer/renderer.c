@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 10:18:17 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 11:09:59 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:06:08 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	renderer(t_vars *v)
 		(tool.draw_end >= SCREEN_HEIGHT) && (tool.draw_end = SCREEN_HEIGHT);
 		put_texture(v, &tool);
 		v->time++;
-		v->move_speed = 0.4;
-		v->rot_speed = 0.2;
+		v->move_speed = 0.2;
+		v->rot_speed = 0.1;
 		x++;
 	}
 	mlx_put_image_to_window(v->mlx, v->mlx_win, v->img.img, 0, 0);
@@ -110,9 +110,10 @@ int	re_init(t_map *map)
 	&v.img.line_length, &v.img.endian);
 	v.img.f = map->f_col;
 	v.img.c = map->c_col;
-	mlx_key_hook(v.mlx_win, key_hook, &v);
+	v.mlx = map->init;
+	mlx_hook(v.mlx_win, 02, 0, key_hook, &v);
+	mlx_hook(v.mlx_win, 17, 0, win_destroyed, &v);
 	mlx_loop_hook(v.map->init, renderer, &v);
-	// mlx_hook(v.map->init, 17, 0, win_destroyed, &v);
 	mlx_loop(v.map->init);
 	return (0);
 }
