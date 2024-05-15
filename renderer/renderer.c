@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 10:18:17 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 11:09:59 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:43:16 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,14 @@ int	re_init(t_map *map)
 
 	set_vector(map, &v);
 	mlx_do_key_autorepeaton(map->init);
-	v.mlx_win = mlx_new_window(v.map->init, \
-	SCREEN_WIDTH, SCREEN_HEIGHT, "cube3d");
-	v.img.img = mlx_new_image(v.map->init, 1920, 1080);
+	v.mlx_win = mlx_window(v.map->init);
+	v.img.img = mlx_image(v.map->init, 1920, 1080);
 	v.img.addr = mlx_get_data_addr(v.img.img, &v.img.bits_per_pixel, \
 	&v.img.line_length, &v.img.endian);
 	v.img.f = map->f_col;
 	v.img.c = map->c_col;
 	mlx_key_hook(v.mlx_win, key_hook, &v);
 	mlx_loop_hook(v.map->init, renderer, &v);
-	// mlx_hook(v.map->init, 17, 0, win_destroyed, &v);
 	mlx_loop(v.map->init);
 	return (0);
 }

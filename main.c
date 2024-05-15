@@ -6,20 +6,20 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 10:50:40 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:09:31 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-// void ll	() 
-// {
-// 	system("leaks cub3D");
-// }
+void ll	() 
+{
+	system("leaks cub3D");
+}
 
 int	main(int ac, char **av)
 {
-	// atexit(ll);
+	atexit(ll);
 	t_info	*info;
 	t_map	*map;
 
@@ -38,7 +38,7 @@ int	main(int ac, char **av)
 	info->filename = av[1];
 	info->fd = open(info->filename, O_RDONLY);
 	if (info->fd == -1)
-		return (print_error("Error in file descriptor"), 1);
+		return (clear_all(NULL, NULL, "Error in file descriptor", 1), 1);
 	map = save_map(info);
 	re_init(map);
 	clear_all(NULL, NULL, NULL, 0);

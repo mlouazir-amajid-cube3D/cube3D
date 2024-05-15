@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:17:43 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/03 16:42:55 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:43:51 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	clear_all(t_map *m, t_info *in, char *mssg, int status)
 		(1) && (free(info->c), free(info->f), free(info->so), \
 		free(info->ea), free(info->we), free(info->no), close(info->fd), \
 		free(info), 0);
-		while (map->content && map->content[++i])
+		while (map && map->content && map->content[++i])
 			free(map->content[i]);
-		(1) && (free(map->content), free(map), 0);
+		(map) && (free(map->content), free(map), 0);
 		exit(status);
 	}
 }

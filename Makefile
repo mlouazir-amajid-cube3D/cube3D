@@ -3,7 +3,7 @@ SRC_LIBFT = ./utils/libft/ft_putnbr_fd.c	./utils/libft/ft_putendl_fd.c		./utils/
 			./utils/libft/ft_lstnew.c	./utils/libft/ft_lstadd_front.c	./utils/libft/ft_lstsize.c	./utils/libft/ft_lstlast.c	./utils/libft/ft_lstadd_back.c	./utils/libft/ft_lstdelone.c		./utils/libft/ft_lstclear.c		./utils/libft/ft_lstiter.c	./utils/libft/ft_lstmap.c ./utils/libft/ft_strcmp.c
 OBJ = $(SRC:.c=.o)
 OBJ_LIBFT = $(SRC_LIBFT:.c=.o)
-FLAGS = cc -Wall -Wextra -Werror  #-fsanitize=address -g
+FLAGS = cc -Wall -Wextra -Werror  -g # -fsanitize=address -g
 NAME = cub3D
 
 all: $(NAME)

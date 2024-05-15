@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 12:01:26 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:43:04 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,6 @@ void	put_texture(t_vars *v, t_render *tool);
 void	set_vector(t_map *map, t_vars *v);
 int		renderer(t_vars *v);
 int		win_destroyed(t_vars *v);
-
+void	*mlx_window(void *mlx_ptr);
+void	*mlx_image(void *mlx_ptr, int width, int height);
 #endif

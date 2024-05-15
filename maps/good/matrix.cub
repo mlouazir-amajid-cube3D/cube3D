@@ -1,9 +1,9 @@
-NO textures/matrix.xpm
-SO textures/matrix.xpm
-WE textures/matrix.xpm
-EA textures/matrix.xpm
+NO ./maps/textures/matrix.xpm
+SO ./maps/textures/matrix.xpm
+WE ./maps/textures/matrix.xpm
+EA ./maps/textures/matprix.xpm
 
-F 0,0,0
+F 0,0,0 
 C 0,0,0
 
 111111111111111111111

@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 20:57:11 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/08 18:02:34 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:13:55 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ t_map	*save_map(t_info *info)
 	map = NULL;
 	map_init(&map);
 	buf = elements_check(map, info);
-	texture_file_check(map, info);
 	map_content_check(map, info, buf);
+	texture_file_check(map, info);
 	return (map);
 }
