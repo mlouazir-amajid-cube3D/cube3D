@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 16:09:31 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:16:57 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av)
 {
 	atexit(ll);
 	t_info	*info;
-	t_map	*map;
+	t_map	map;
 
 	if (ac != 2 || map_name_check(av[1]))
 		return (print_error("Invalid file name"), 1);
@@ -40,7 +40,7 @@ int	main(int ac, char **av)
 	if (info->fd == -1)
 		return (clear_all(NULL, NULL, "Error in file descriptor", 1), 1);
 	map = save_map(info);
-	re_init(map);
+	re_init(&map);
 	clear_all(NULL, NULL, NULL, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:13:36 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 11:14:57 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:21:49 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	clear_img(t_data *data)
 		while (j < SCREEN_WIDTH)
 		{
 			if (i < (SCREEN_HEIGHT / 2))
-				my_mlx_pixel_put(data, j, i, data->f);
-			else
 				my_mlx_pixel_put(data, j, i, data->c);
+			else
+				my_mlx_pixel_put(data, j, i, data->f);
 			j++;
 		}
 		i++;

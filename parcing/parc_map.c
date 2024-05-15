@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 20:57:11 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 14:13:55 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/15 19:16:21 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,34 +58,30 @@ char	*elements_check(t_map *map, t_info *info)
 	return (buf);
 }
 
-void	map_init(t_map **map)
+void	map_init(t_map *map)
 {
-	(*map) = malloc(sizeof(t_map));
-	(!(*map)) && (clear_all(NULL, NULL, "Fail in malloc", 1), 0);
-	clear_all((*map), NULL, NULL, 2);
-	(*map)->content = NULL;
-	(*map)->init = NULL;
-	(*map)->no_tex = NULL;
-	(*map)->so_tex = NULL;
-	(*map)->we_tex = NULL;
-	(*map)->ea_tex = NULL;
-	(*map)->c_col = 0;
-	(*map)->f_col = 0;
-	(*map)->player_pos_x = 0;
-	(*map)->player_pos_y = 0;
-	(*map)->orientation = 0;
-	(*map)->size = 16;
+	map->content = NULL;
+	map->init = NULL;
+	map->no_tex = NULL;
+	map->so_tex = NULL;
+	map->we_tex = NULL;
+	map->ea_tex = NULL;
+	map->c_col = 0;
+	map->f_col = 0;
+	map->player_pos_x = 0;
+	map->player_pos_y = 0;
+	map->orientation = 0;
+	map->size = 16;
 }
 
-t_map	*save_map(t_info *info)
+t_map	save_map(t_info *info)
 {
-	t_map	*map;
+	t_map	map;
 	char	*buf;
 
-	map = NULL;
 	map_init(&map);
-	buf = elements_check(map, info);
-	map_content_check(map, info, buf);
-	texture_file_check(map, info);
+	buf = elements_check(&map, info);
+	map_content_check(&map, info, buf);
+	texture_file_check(&map, info);
 	return (map);
 }
