@@ -237,6 +237,8 @@ int renderer(t_vars *v)
 			}
 			//Check if ray has hit a wall
 			if (v->map->content[mapY] != NULL && v->map->content[mapY][mapX] != 0 && v->map->content[mapY][mapX] > '0') hit = 1;
+			if (v->map->content[mapY] == NULL && v->map->content[mapY][mapX] == 0) break;
+			
 		} 
 
 		//Calculate distance projected on camera direction (Euclidean distance would give fisheye effect!)
@@ -285,7 +287,8 @@ int renderer_init(t_map *map)
 	t_vars v = {//.posX = 1, .posY = 1,
 		.posX = map->player_pos_x + .3f, .posY = map->player_pos_y + .3f,  //x and y start position
 		.dirX = -1, .dirY = 0, //initial direction vector
-		.planeX = 0, .planeY = 0.66, //the 2d raycaster version of camera plane
+		// .planeX = 0, .planeY = 0.66, //the 2d raycaster version of camera plane
+		 .planeX = 0, .planeY = 0.66, //the 2d raycaster version of camera plane
 		.time = 0, //time of current frame
 		.moveSpeed = 0, //the constant value is in squares/second
 		.rotSpeed = 0, //the constant value is in radians/second
