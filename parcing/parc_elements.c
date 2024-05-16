@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing_4.c                                        :+:      :+:    :+:   */
+/*   parc_elements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:27:22 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/02 16:28:11 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:56:16 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	is_already_registered(char *element)
 {
 	if (!element)
 		return (0);
-	return (print_error("Duplicated"), exit(1), 1);
+	return (print_error("Duplicated element"), exit(1), 1);
 }
 
 int	check_element(char *line, char *elem, int size)

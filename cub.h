@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:27 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 19:25:06 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:11:32 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct s_vars
 	double			dir_y;
 	double			plane_x;
 	double			plane_y;
-	unsigned int	time;
 	double			move_speed;
 	double			rot_speed;
 	int				mouse_movement;
@@ -128,4 +127,5 @@ int		renderer(t_vars *v);
 int		win_destroyed(t_vars *v);
 void	*mlx_window(void *mlx_ptr);
 void	*mlx_image(void *mlx_ptr, int width, int height);
+int		all_spaces(char *buf);
 #endif

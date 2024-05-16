@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 10:29:28 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 18:00:32 by amajid           ###   ########.fr       */
+/*   Updated: 2024/05/16 09:32:33 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	win_destroyed(t_vars *v)
 {
-	(void)v;
+	mlx_destroy_image(v->map->init, v->map->no_tex);
+	mlx_destroy_image(v->map->init, v->map->so_tex);
+	mlx_destroy_image(v->map->init, v->map->we_tex);
+	mlx_destroy_image(v->map->init, v->map->ea_tex);
 	mlx_destroy_window(v->map->init, v->mlx_win);
 	mlx_destroy_image(v->map->init, v->img.img);
 	clear_all(NULL, NULL, NULL, 0);

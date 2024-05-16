@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 16:14:29 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 19:17:18 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:30:25 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	texture_file_check(t_map *map, t_info *info)
 		(map->so_tex) && (mlx_destroy_image(map->init, map->so_tex), 0);
 		(map->we_tex) && (mlx_destroy_image(map->init, map->we_tex), 0);
 		(map->ea_tex) && (mlx_destroy_image(map->init, map->ea_tex), 0);
-		clear_all(NULL, NULL, "Error in mlx - 2", 1);
+		clear_all(NULL, NULL, "Error in mlx", 1);
 	}
 }

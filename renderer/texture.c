@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:50:16 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 11:26:35 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 09:43:17 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	*get_texture(t_vars *v, t_render *tool)
 	if ((0 <= tool->ray_dir_y) && tool->side)
 		return (v->map->so_tex);
 	else if ((tool->ray_dir_x <= 0) && !tool->side)
-		return (v->map->ea_tex);
-	else if ((0 <= tool->ray_dir_x) && !tool->side)
 		return (v->map->we_tex);
+	else if ((0 <= tool->ray_dir_x) && !tool->side)
+		return (v->map->ea_tex);
 	return (NULL);
 }
 

@@ -6,11 +6,22 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 20:57:11 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 19:16:21 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:20:31 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub.h"
+
+int	all_spaces(char *buf)
+{
+	int	i;
+
+	i = -1;
+	while (buf[++i])
+		if (buf[i] != 9 && buf[i] != 32)
+			return (0);
+	return (1);
+}
 
 int	is_map_content(char *buf)
 {
@@ -41,9 +52,10 @@ char	*elements_check(t_map *map, t_info *info)
 	(!buf) && (clear_all(NULL, NULL, "Empty file", 1), 0);
 	while (buf)
 	{
-		if (buf[0] && !is_map_content(buf))
+		if (buf[0] && !all_spaces(buf) \
+		&& !is_map_content(buf))
 			break ;
-		if (buf[0])
+		if (buf[0] && !all_spaces(buf))
 			verify_line(info, buf);
 		free(buf);
 		buf = get_next_line(info->fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   renderer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 10:18:17 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/15 19:12:15 by amajid           ###   ########.fr       */
+/*   Updated: 2024/05/16 09:34:01 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	renderer(t_vars *v)
 		tool.draw_end = SCREEN_HEIGHT / 2 + tool.line_height / 2;
 		(tool.draw_end >= SCREEN_HEIGHT) && (tool.draw_end = SCREEN_HEIGHT);
 		put_texture(v, &tool);
-		v->time++;
 		v->move_speed = 0.2;
 		v->rot_speed = 0.1;
 		x++;
