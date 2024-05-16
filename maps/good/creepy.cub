@@ -1,13 +1,16 @@
 SO ./maps/textures/wolfenstein/red_brick.xpm
-EA ./maps/textures/test/east.xpm
+EA 		./maps/textures/test/east.xpm
 NO ./maps/textures/test/north.xpm
-WE ./maps/textures/test/west.xpm
+WE					 ./maps/textures/test/west.xpm
+
 C 0,0,1
 F 15,6,40
 	1111111
 	1100001
-	11N0001
+	11W0001
 	1101001
 	1110001
 	1100001
 	1111111
+     
+	 

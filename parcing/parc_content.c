@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parc_content.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:54:24 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/16 15:29:29 by amajid           ###   ########.fr       */
+/*   Updated: 2024/05/16 18:31:31 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	map_content_check(t_map *map, t_info *info, char *line)
 	int		p;
 	int		a;
 
-	tmp = NULL;
 	a = 0;
 	p = 0;
 	first_last_lines(map, line, 0);
@@ -108,7 +107,8 @@ void	map_content_check(t_map *map, t_info *info, char *line)
 			(a) && (clear_all(NULL, NULL, \
 			"Invalid content", 1), 0);
 		}
-		(line[0] && all_spaces(line)) && (free(line), 0);
+		(line[0] && all_spaces(line)) && (free(line), \
+		clear_all(NULL, NULL, "Invalid content", 1), 0);
 		(!line[0]) && (a = 1, free(line), 0);
 		line = get_next_line(info->fd);
 	}
