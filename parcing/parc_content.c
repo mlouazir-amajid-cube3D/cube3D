@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:54:24 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/08 18:03:55 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 10:53:09 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,13 @@ void	map_content_check(t_map *map, t_info *info, char *line)
 	line = get_next_line(info->fd);
 	while (line)
 	{
-		if (line[0])
+		if (line[0] && !all_spaces(line))
 		{
-			tmp = line;
-			middle_lines(map, line, &p);
+			(tmp = line, middle_lines(map, line, &p));
 			(a) && (clear_all(NULL, NULL, \
 			"Invalid content", 1), 0);
 		}
+		(line[0] && all_spaces(line)) && (free(line), 0);
 		(!line[0]) && (a = 1, free(line), 0);
 		line = get_next_line(info->fd);
 	}

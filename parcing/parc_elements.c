@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parcing_4.c                                        :+:      :+:    :+:   */
+/*   parc_elements.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:27:22 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/02 16:28:11 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:18:08 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	is_already_registered(char *element)
 {
 	if (!element)
 		return (0);
-	return (print_error("Duplicated"), exit(1), 1);
+	return (print_error("Duplicated element"), exit(1), 1);
 }
 
 int	check_element(char *line, char *elem, int size)
@@ -38,8 +38,6 @@ char	*give_elements(char *line)
 		i++;
 	while (line[i] == 32 || line[i] == 9)
 		i++;
-	if (i == ft_strlen(line))
-		return (print_error("No File Found"), exit(1), NULL);
 	tmp = ft_substr(line, i, ft_strlen(line));
 	(!tmp) && (clear_all(NULL, NULL, "faille in malloc", 1), 0);
 	return (tmp);

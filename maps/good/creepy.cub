@@ -1,5 +1,5 @@
 
-SO ./maps/textures/test/south.xpm
+SO ./maps/textures/wolfenstein/red_brick.xpm
 EA      ./maps/textures/test/east.xpm
 NO ./maps/textures/test/north.xpm
 WE ./maps/textures/test/west.xpm
