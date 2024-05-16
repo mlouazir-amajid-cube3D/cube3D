@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/16 11:02:01 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:14:54 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void ll	() 
 {
-	system("lsof -c cub3D");
+	system("leaks  cub3D");
 }
 
 int	main(int ac, char **av)

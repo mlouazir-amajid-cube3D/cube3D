@@ -6,7 +6,7 @@
 /*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 20:57:11 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/16 10:20:31 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:21:40 by mlouazir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*elements_check(t_map *map, t_info *info)
 
 void	map_init(t_map *map)
 {
+	clear_all(map, NULL, NULL, 2);
 	map->content = NULL;
 	map->init = NULL;
 	map->no_tex = NULL;
