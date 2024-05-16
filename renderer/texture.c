@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 15:50:16 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/16 09:43:17 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:17:07 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	put_texture(t_vars *v, t_render *tool)
 		wall_point = v->pos_x + tool->perp_wall_distance * tool->ray_dir_x;
 	wall_point -= floor(wall_point);
 	text_x = (int)(wall_point * 64.f);
+	text_x = 64 - text_x - 1;
 	if ((!tool->side && tool->ray_dir_x > 0) \
 	|| (tool->side && tool->ray_dir_y < 0))
 		text_x = 64 - text_x - 1;

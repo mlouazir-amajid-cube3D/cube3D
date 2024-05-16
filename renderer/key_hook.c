@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 10:29:28 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/16 09:32:33 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:05:53 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	key_hook_4(int keycode, t_vars *v)
 	double	olddir_x;
 	double	old_plane_x;
 
-	if (keycode == 123 || v->mouse_movement == -1)
+	if (keycode == 124)
 	{
 		olddir_x = v->dir_x;
 		v->dir_x = v->dir_x * cos(v->rot_speed) - v->dir_y * sin(v->rot_speed);
@@ -49,7 +49,7 @@ void	key_hook_3(int keycode, t_vars *v)
 	double	olddir_x;
 	double	old_plane_x;
 
-	if (keycode == 124 || v->mouse_movement == 1)
+	if (keycode == 123)
 	{
 		olddir_x = v->dir_x;
 		v->dir_x = v->dir_x \
@@ -73,7 +73,7 @@ void	key_hook_2(int keycode, t_vars *v)
 
 	right_x = v->dir_y;
 	right_y = -v->dir_x;
-	if (keycode == 2)
+	if (keycode == 0)
 	{
 		if (v->map->content[(int)(v->pos_y)] \
 		[(int)(v->pos_x + right_x * v->move_speed)] == '0')
@@ -82,7 +82,7 @@ void	key_hook_2(int keycode, t_vars *v)
 		[(int)(v->pos_x)] == '0')
 			v->pos_y += right_y * v->move_speed;
 	}
-	else if (keycode == 0)
+	else if (keycode == 2)
 	{
 		if (v->map->content[(int)(v->pos_y)] \
 		[(int)(v->pos_x - right_x * v->move_speed)] == '0')

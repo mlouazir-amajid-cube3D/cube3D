@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parc_content.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 16:54:24 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/16 10:53:09 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:29:29 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	map_content_check(t_map *map, t_info *info, char *line)
 	{
 		if (line[0] && !all_spaces(line))
 		{
-			(tmp = line, middle_lines(map, line, &p));
+			(1) && (tmp = line, middle_lines(map, line, &p), 0);
 			(a) && (clear_all(NULL, NULL, \
 			"Invalid content", 1), 0);
 		}

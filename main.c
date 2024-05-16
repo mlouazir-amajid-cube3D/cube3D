@@ -3,23 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlouazir <mlouazir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amajid <amajid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 16:13:18 by mlouazir          #+#    #+#             */
-/*   Updated: 2024/05/16 11:14:54 by mlouazir         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:28:30 by amajid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-void ll	() 
-{
-	system("leaks  cub3D");
-}
-
 int	main(int ac, char **av)
 {
-	atexit(ll);
 	t_info	*info;
 	t_map	map;
 
