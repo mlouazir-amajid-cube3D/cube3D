@@ -9,7 +9,7 @@ NAME = cub3D
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJ_LIBFT)
-	$(FLAGS) -o $@ $(OBJ) $(OBJ_LIBFT) -lmlx -framework OpenGL -framework AppKit
+	$(FLAGS) -o $@ $(OBJ) $(OBJ_LIBFT) -lmlx -framework OpenGL -framework AppKit -Ofast
 
 %.o: %.c cub.h ./utils/libft/libft.h
 	$(FLAGS) -c $< -o $@
